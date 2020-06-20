@@ -1,0 +1,141 @@
+	#NavBar {
+		position: absolute;
+		width: 1920px;
+		height: 109px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Rectangle_1 {
+		fill: rgba(255,220,0,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_1 {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 109px;
+		left: 0px;
+		top: 0px;
+	}
+	#Rectangle_2 {
+		fill: rgba(0,0,0,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_2 {
+		filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+		position: absolute;
+		overflow: visible;
+		width: 172px;
+		height: 77px;
+		left: 1745px;
+		top: 25px;
+	}
+	#ScouCV {
+		position: absolute;
+		width: 292px;
+		height: 86px;
+		left: 70px;
+		top: 12px;
+		overflow: visible;
+	}
+	#Log_out {
+		left: 1786.5px;
+		top: 41.5px;
+		position: absolute;
+		overflow: visible;
+		width: 73px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(255,255,255,1);
+	}
+	#Concact_s {
+		left: 1465.5px;
+		top: 41.5px;
+		position: absolute;
+		overflow: visible;
+		width: 76px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(0,0,0,1);
+	}
+	#A_Propos {
+		left: 1600.5px;
+		top: 41.5px;
+		position: absolute;
+		overflow: visible;
+		width: 86px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(0,0,0,1);
+	}
+	#Line_1 {
+		fill: transparent;
+		stroke: rgba(0,0,0,1);
+		stroke-width: 3px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_1 {
+		overflow: visible;
+		position: absolute;
+		width: 3px;
+		height: 70px;
+		left: 385.5px;
+		top: 20.5px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Espace_Entreprise {
+		left: 408.5px;
+		top: 20.5px;
+		position: absolute;
+		overflow: visible;
+		width: 339px;
+		white-space: nowrap;
+		line-height: 89px;
+		margin-top: -22.5px;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 44px;
+		color: rgba(0,0,0,1);
+	}
+	#Concact_s {
+		left: 1465.5px;
+		top: 41.5px;
+		position: absolute;
+		overflow: visible;
+		width: 76px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Segoe UI;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 20px;
+		color: rgba(0,0,0,1);
+	}
