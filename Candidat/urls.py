@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index,name='index'),
     path('register/', views.register, name='register'),
     path('login/', LoginView.as_view(), name="login"),
-    path('profil/', views.profil, name="profil"),
+    path('profil/<str:pk>/', views.profil, name="profil"),
 ]
