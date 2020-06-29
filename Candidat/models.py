@@ -64,6 +64,9 @@ class Projet_realise(models.Model):
     annee_projet = models.IntegerField( null=True)
     description_projet = models.TextField(null=True,blank=True)
 
+    def __str__(self):
+        return self.description_projet
+
 class Certificat(models.Model):
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)
     accreditation = models.CharField(max_length=100 ,null=True)

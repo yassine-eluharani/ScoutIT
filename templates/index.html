@@ -2,6 +2,10 @@
 
 {% block content %}
 <h1>Index</h1>
+{{ request.user }}
+
+<span>Hello </span>
+<span><a href="{% url 'logout' %}">Logout</a></span>
 {% endblock content %}    
 
 
