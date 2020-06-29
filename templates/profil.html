@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Profil</h1>
+    <p>{{ profil.nom }}</p>
+    <p>{{ profil.prenom }}</p>
+    
+    <div class='container'>
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add Projet</a>
+        <table>
+            <tr>
+                <th>Annee Projet</th>
+                <th>Description</th>
+            </tr>
+        {% for projet in projets %}
 
-    <table>
-        <tr>
-            <th>Annee Projet</th>
-            <th>Description</th>
-        </tr>
-    {% for projet in projets %}
+            <tr>
+                <td>{{ projet.annee_projet }}</td>
+                <td>{{ projet.description_projet }}</td>
+                <td><a class="btn btn-primary" href="{% url 'update_projet' projet.id %}">Update</a></td>
+                <td><a class="btn btn-danger" href="#">Delete</a></td>
+            </tr>
 
-        <tr>
-            <td>{{ projet.annee_projet }}</td>
-            <td>{{ projet.description_projet }}</td>
-        </tr>
+        {% endfor %}
 
-    {% endfor %}
-
-</table>
+        </table>
+    </div>
 {% endblock content %}
