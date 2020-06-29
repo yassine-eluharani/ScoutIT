@@ -5,6 +5,7 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 #Local imports
+from .decorators import unauthenticated_user
 from .models import *
 from .forms import *
 
@@ -15,47 +16,41 @@ def index(request):
 def profil(request,pk):
     profil = Profil.objects.get(id=pk)
     projets = profil.projet_realise_set.all()
-    print(projets)
-
     context={
         'profil' :profil,
         'projets' :projets
     }
     return render(request ,'profil.html',context)
 
+@unauthenticated_user
 def register(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-    else:
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            if form.is_valid():
-                form.save()
-                user = form.cleaned_data.get('username')
-                messages.success(request,'Account was created for ' + user)
-                return redirect('login')
-        context ={
-            'form':form
-        }
-        return render(request ,'registration/register.html',context)
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request,'Account was created for ' + user)
+            return redirect('login')
+    context ={
+        'form':form
+    }
+    return render(request ,'registration/register.html',context)
 
+@unauthenticated_user
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-    else:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password') 
-            user = authenticate(request,username = username , password=password)  
-            if user is not None :
-                login(request,user)
-                return redirect('/')
-            else:
-                messages.info(request,'Username or Password is incorrect')
-                
-        context={}
-        return render(request ,'registration/login.html',context)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password') 
+        user = authenticate(request,username = username , password=password)  
+        if user is not None:
+            login(request,user)
+            return redirect('/')
+        else:
+            messages.info(request,'Username or Password is incorrect')
+    context={}
+    return render(request ,'registration/login.html',context)
+
 
 def logoutUser(request):
     logout(request)
