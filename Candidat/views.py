@@ -13,11 +13,9 @@ def index(request):
     return render(request,'index.html')
 
 @login_required(login_url='login')
-def profil(request,pk):
-    profil = Profil.objects.get(id=pk)
-    projets = profil.projet_realise_set.all()
+def profil(request):
+    projets = request.user.profil.projet_realise_set.all()
     context={
-        'profil' :profil,
         'projets' :projets
     }
     return render(request ,'profil.html',context)
@@ -25,15 +23,21 @@ def profil(request,pk):
 @unauthenticated_user
 def register(request):
     form = CreateUserForm()
+    profil_form = CreateProfil()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request,'Account was created for ' + user)
+        profil_form = CreateProfil(request.POST)
+        if form.is_valid() and profil_form.is_valid():
+            user = form.save()            
+            profil = profil_form.save(commit=False)
+            profil.user = user
+            profil.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request,'Account was created for ' + username)
             return redirect('login')
     context ={
-        'form':form
+        'form':form,
+        'profil_form' :profil_form
     }
     return render(request ,'registration/register.html',context)
 
@@ -57,16 +61,16 @@ def logoutUser(request):
     return redirect('login')
 
 @login_required(login_url='login')
-def createProjet(request,pk):
+def createProjet(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Projet_realise , fields=('annee_projet','description_projet') ,extra=2)
-    profil = Profil.objects.get(id=pk)
+    profil = request.user.profil
     formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
     if request.method == 'POST':
         formset = ProjetFormSet(request.POST ,instance=profil) 
         if formset.is_valid():
             formset.save()
-            return redirect("/")
+            return redirect("profil")
     
     context ={
         'formset':formset  
@@ -77,14 +81,13 @@ def createProjet(request,pk):
 def updateProjet(request,pk):
 
     project = Projet_realise.objects.get(id=pk)
-    profile = project.profil.id
-    print(profile)
+    print(project)
     form = Projet_realiseForm(instance=project)
     if request.method == 'POST':
         form = Projet_realiseForm(request.POST,instance=project)
         if form.is_valid():
             form.save()
-            return redirect("profil",profile)
+            return redirect("profil")
     context ={
         'form':form  
     }
@@ -93,10 +96,9 @@ def updateProjet(request,pk):
 @login_required(login_url='login')
 def deleteProjet(request ,pk):
     project = Projet_realise.objects.get(id=pk)
-    profile = project.profil.id
     if request.method == 'POST':
         project.delete()
-        return redirect("profil",profile)
+        return redirect("profil")
     context = {
         'item':project
     }
