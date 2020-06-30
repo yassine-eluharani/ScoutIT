@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -14,6 +15,7 @@ class Profil(models.Model):
         ('V','veuf(ve)'),
         ('D','divorcé(e)'),
     )
+    user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
     nom = models.CharField(max_length=20 ,null=True)
     prenom = models.CharField(max_length=20 ,null=True)
     date_n = models.DateField(null=True)
