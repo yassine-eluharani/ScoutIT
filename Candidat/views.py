@@ -14,12 +14,24 @@ def index(request):
 
 @login_required(login_url='login')
 def profil(request):
+    academics = request.user.profil.academic_set.all()
+    exp_pros = request.user.profil.experience_pro_set.all()
     projets = request.user.profil.projet_realise_set.all()
+    certificats = request.user.profil.certificat_set.all()
+    langues = request.user.profil.language_set.all()
+    print(academics,exp_pros)
     context={
-        'projets' :projets
+        'academics' : academics,
+        'exp_pros':exp_pros,
+        'projets' :projets,
+        'certificats':certificats,
+        'langues' : langues
     }
     return render(request ,'profil.html',context)
 
+
+
+#Registartion
 @unauthenticated_user
 def register(request):
     form = CreateUserForm()
@@ -55,15 +67,106 @@ def loginPage(request):
     context={}
     return render(request ,'registration/login.html',context)
 
-
 def logoutUser(request):
     logout(request)
     return redirect('login')
 
+#Projet_realise
 @login_required(login_url='login')
 def createProjet(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Projet_realise , fields=('annee_projet','description_projet') ,extra=2)
+    profil = request.user.profil
+    formset = ProjetFormSet(instance=profil)    
+    if request.method == 'POST':
+        formset = ProjetFormSet(request.POST ,instance=profil) 
+        if formset.is_valid():
+            formset.save()
+            return redirect("profil")
+    
+    context ={
+        'formset':formset  
+    }
+    return render(request,'form/add-from.html',context)
+
+@login_required(login_url='login')
+def deleteProjet(request ,pk):
+
+    project = Projet_realise.objects.get(id=pk)
+    if request.method == 'POST':
+        project.delete()
+        return redirect("profil")
+    context = {
+        'item':project
+    }
+    return render(request,'form/delete.html',context)
+
+#Experience_Pro
+@login_required(login_url='login')
+def createExperience_pro(request):
+    
+    ProjetFormSet = inlineformset_factory(Profil , Experience_Pro , fields=('annee_debut' ,'annee_fin' ,'description_exp_pro') ,extra=2)
+    profil = request.user.profil
+    formset = ProjetFormSet(instance=profil)    
+    if request.method == 'POST':
+        formset = ProjetFormSet(request.POST ,instance=profil) 
+        if formset.is_valid():
+            formset.save()
+            return redirect("profil")
+    
+    context ={
+        'formset':formset  
+    }
+    return render(request,'form/add-from.html',context)
+
+@login_required(login_url='login')
+def deleteExperience_pro(request ,pk):
+    exp_pro = Experience_Pro.objects.get(id=pk)
+    if request.method == 'POST':
+        exp_pro.delete()
+        return redirect("profil")
+    context = {
+        'item':exp_pro
+    }
+    return render(request,'form/delete.html',context)
+
+
+#Academic
+@login_required(login_url='login')
+def createAcademic(request):
+    
+    ProjetFormSet = inlineformset_factory(Profil , Academic , fields=('annee_debut','annee_fin' ,'type_diplome','description_academic','ecole') ,extra=2)
+    profil = request.user.profil
+    formset = ProjetFormSet(instance=profil)    
+    if request.method == 'POST':
+        formset = ProjetFormSet(request.POST ,instance=profil) 
+        if formset.is_valid():
+            formset.save()
+            return redirect("profil")
+    
+    context ={
+        'formset':formset  
+    }
+    return render(request,'form/add-from.html',context)
+
+@login_required(login_url='login')
+def deleteAcademic(request ,pk):
+
+    academic = Academic.objects.get(id=pk)
+    if request.method == 'POST':
+        academic.delete()
+        return redirect("profil")
+    context = {
+        'item': academic
+    }
+    return render(request,'form/delete.html',context)
+
+
+#Certificat
+@login_required(login_url='login')
+def createCertificat(request):
+    
+    ProjetFormSet = inlineformset_factory(Profil , Certificat , fields=('accreditation','titre_cert','date_cert') ,extra=2)
     profil = request.user.profil
     formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
     if request.method == 'POST':
@@ -75,31 +178,71 @@ def createProjet(request):
     context ={
         'formset':formset  
     }
-    return render(request,'form/projet_realse-from.html',context)
+    return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
-def updateProjet(request,pk):
+def deleteCertificat(request ,pk):
 
-    project = Projet_realise.objects.get(id=pk)
-    print(project)
-    form = Projet_realiseForm(instance=project)
+    certificat = Certificat.objects.get(id=pk)
     if request.method == 'POST':
-        form = Projet_realiseForm(request.POST,instance=project)
-        if form.is_valid():
-            form.save()
-            return redirect("profil")
-    context ={
-        'form':form  
-    }
-    return render(request,'form/projet_realse-from.html',context)
-
-@login_required(login_url='login')
-def deleteProjet(request ,pk):
-    project = Projet_realise.objects.get(id=pk)
-    if request.method == 'POST':
-        project.delete()
+        certificat.delete()
         return redirect("profil")
     context = {
-        'item':project
+        'item':certificat
     }
     return render(request,'form/delete.html',context)
+
+
+#Language
+@login_required(login_url='login')
+def createLanguage(request):
+    
+    ProjetFormSet = inlineformset_factory(Profil , Language , fields=('langue','level') ,extra=2)
+    profil = request.user.profil
+    formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
+    if request.method == 'POST':
+        formset = ProjetFormSet(request.POST ,instance=profil) 
+        if formset.is_valid():
+            formset.save()
+            return redirect("profil")
+    
+    context ={
+        'formset':formset  
+    }
+    return render(request,'form/add-from.html',context)
+
+@login_required(login_url='login')
+def deleteLanguage(request ,pk):
+
+    langue = Language.objects.get(id=pk)
+    print(langue)
+    if request.method == 'POST':
+        langue.delete()
+        return redirect("profil")
+    context = {
+        'item':langue
+    }
+    return render(request,'form/delete.html',context)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

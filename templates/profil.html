@@ -1,12 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Profil</h1>
-    <p>{{ profil.nom }}</p>
-    <p>{{ profil.prenom }}</p>
+    <div class="container">
+        <h1>Profil</h1>
+        <h3>{{ request.user.profil.nom }}  {{ request.user.profil.prenom }}</h3>
+        <br>
+        
+    </div>
+
     
-    <div class='container'>
-        <a class="btn btn-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add Projet</a>
-        <table>
+    <div class='container bg-light text-dark'>
+        <h4>Academic</h4>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Academic</a>
+        <table class="table">
+            <tr>
+                <th>Annee Debut</th>
+                <th>Annee Fin</th>
+                <th>Diplome</th>
+                <th>Description</th>
+                <th>Ecole</th>
+            </tr>
+        {% for academic in academics %}
+
+            <tr>
+                <td>{{ academic.annee_debut }}</td>
+                <td>{{ academic.annee_fin }}</td>
+                <td>{{ academic.type_diplome }}</td>
+                <td>{{ academic.description_academic }}</td>
+                <td>{{ academic.ecole }}</td>
+                <td><a class="btn btn-danger float-right" href="{% url 'delete_academic' academic.id %}">Delete</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </table>
+    </div>
+
+    <div class='container bg-light text-dark'>
+        <h4>Experience Pro</h4>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update Experience</a>
+        <table class="table">
+            <tr>
+                <th>Annee Debut</th>
+                <th>Annee Fin</th>
+                <th>Description</th>
+            </tr>
+        {% for exp_pro in exp_pros %}
+
+            <tr>
+                <td>{{ exp_pro.annee_debut }}</td>
+                <td>{{ exp_pro.annee_fin }}</td>
+                <td>{{ exp_pro.description_exp_pro }}</td>
+                <td><a class="btn btn-danger float-right" href="{% url 'delete_experience_pro' exp_pro.id %}">Delete</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </table>
+    </div>
+
+    <div class='container bg-light text-dark'>
+        <h4>Projet réalise</h4>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projet</a>
+        <table class="table">
             <tr>
                 <th>Annee Projet</th>
                 <th>Description</th>
@@ -15,13 +70,60 @@
 
             <tr>
                 <td>{{ projet.annee_projet }}</td>
-                <td>{{ projet.description_projet }}</td>
-                <td><a class="btn btn-primary" href="{% url 'update_projet' projet.id %}">Update</a></td>
-                <td><a class="btn btn-danger" href="{% url 'delete_projet' projet.id %}">Delete</a></td>
+                <td>{{ projet.description_projet }}</td>                
+                <td><a class="btn btn-danger float-right" href="{% url 'delete_projet' projet.id %}">Delete</a></td>
             </tr>
 
         {% endfor %}
 
         </table>
     </div>
+
+
+    <div class='container bg-light text-dark'>
+        <h4>Certificat</h4>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update Certificat</a>
+        <table class="table">
+            <tr>
+                <th>Accreditation</th>
+                <th>Titre</th>
+                <th>Date</th>
+            </tr>
+        {% for certificat in certificats %}
+
+            <tr>
+                <td>{{ certificat.accreditation }}</td>
+                <td>{{ certificat.titre_cert }}</td>
+                <td>{{ certificat.date_cert }}</td>
+                
+                <td><a class="btn btn-danger float-right" href="{% url 'delete_certificat' certificat.id %}">Delete</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </table>
+    </div>
+
+
+    <div class='container bg-light text-dark'>
+        <h4>Langue</h4>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Langue</a>
+        <table class="table">
+            <tr>
+                <th>Langue</th>
+                <th>Level</th>
+            </tr>
+        {% for langue in langues %}
+
+            <tr>
+                <td>{{ langue.langue }}</td>
+                <td>{{ langue.level }}</td>
+                <td><a class="btn btn-danger float-right" href="{% url 'delete_language' langue.id %}">Delete</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </table>
+    </div>
+    
 {% endblock content %}

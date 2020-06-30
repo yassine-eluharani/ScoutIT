@@ -4,7 +4,7 @@
 
     <p>Confirm Delete "{{ item }}" </p>
 
-    <form action="{% url 'delete_projet' item.id %}" method="POST">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
         <a href="/">Cancel</a>
         <input type="submit" name="Confirm">
     </form>

@@ -8,9 +8,24 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('profil/', views.profil, name="profil"),
-
     
+    #Academic Paths
+    path('create_academic/', views.createAcademic, name="create_academic"),
+    path('delete_academic/<str:pk>/', views.deleteAcademic, name="delete_academic"),
+    
+    #Experience_Pro Paths
+    path('create_experience_pro/', views.createExperience_pro, name="create_experience_pro"),
+    path('delete_experience_pro/<str:pk>/', views.deleteExperience_pro, name="delete_experience_pro"),
+    
+    #Projet_realise Paths
     path('create_projet/', views.createProjet, name="create_projet"),
-    path('update_projet/<str:pk>/', views.updateProjet, name="update_projet"),
-    path('delete/<str:pk>/', views.deleteProjet, name="delete_projet"),
+    path('delete_projet/<str:pk>/', views.deleteProjet, name="delete_projet"),
+    
+    #Certificat Paths
+    path('create_certificat/', views.createCertificat, name="create_certificat"),
+    path('delete_certificat/<str:pk>/', views.deleteCertificat, name="delete_certificat"),
+    
+    #Language Paths
+    path('create_language/', views.createLanguage, name="create_language"),
+    path('delete_language/<str:pk>/', views.deleteLanguage, name="delete_language"),
 ]
