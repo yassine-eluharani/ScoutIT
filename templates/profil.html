@@ -1,111 +1,564 @@
-{% extends 'base.html' %}
-{% block content %}
-    <div class="container">
-        <h1>Profil</h1>
-        <h3>{{ request.user.profil.nom }}  {{ request.user.profil.prenom }}</h3>
-        <br>
-        
-    </div>
+{% load static %}
 
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <div class='container bg-light text-dark'>
-        <h4>Academic</h4>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Academic</a>
-        <table class="table">
-            <tr>
-                <th>Annee Debut</th>
-                <th>Annee Fin</th>
-                <th>Diplome</th>
-                <th>Description</th>
-                <th>Ecole</th>
-            </tr>
-        {% for academic in academics %}
+<style>
+body { 
+  margin: 0;
+  font-family: raleway, sans-serif;
+}
+	.header {
+  overflow: hidden;
+  background-color: #FFDC00;
+  padding: 20px 10px;
+}
 
-            <tr>
-                <td>{{ academic.annee_debut }}</td>
-                <td>{{ academic.annee_fin }}</td>
-                <td>{{ academic.type_diplome }}</td>
-                <td>{{ academic.description_academic }}</td>
-                <td>{{ academic.ecole }}</td>
-                <td><a class="btn btn-danger float-right" href="{% url 'delete_academic' academic.id %}">Delete</a></td>
-            </tr>
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 30px;
+  text-decoration: none;
+  font-size: 23px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
 
-        {% endfor %}
 
-        </table>
+
+.header a:hover {
+  background-color: white;
+  color: black;
+}
+
+.header a.active {
+  background-color: black;
+  color: white;
+}
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  
+  .header-right {
+    float: none;
+  }
+}
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "raleway", sans-serif;
+}
+
+body {
+  background: #585c68;
+  font-size: 14px;
+  line-height: 22px;
+  color: #555555;
+}
+
+.bold {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.semi-bold {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.resume {
+  width: 800px;
+  height: auto;
+  display: flex;
+  margin: 50px auto;
+}
+
+.resume .resume_left {
+  width: 280px;
+  background: #FFDC00;
+}
+
+.resume .resume_left .resume_profile {
+  width: 100%;
+  height: 280px;
+}
+
+.resume .resume_left .resume_profile img {
+  width: 100%;
+  height: 100%;
+}
+
+.resume .resume_left .resume_content {
+  padding: 0 25px;
+}
+
+.resume .title {
+  margin-bottom: 20px;
+}
+
+.resume .resume_left .bold {
+  color: black;
+}
+
+.resume .resume_left .regular {
+  color: black;
+}
+
+.resume .resume_item {
+  padding: 25px 0;
+  border-bottom: 2px solid black;
+}
+
+.resume .resume_left .resume_item:last-child,
+.resume .resume_right .resume_item:last-child {
+  border-bottom: 0px;
+}
+
+.resume .resume_left ul li {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.resume .resume_left ul li:last-child {
+  margin-bottom: 0;
+}
+
+.resume .resume_left ul li .icon {
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  color: black;
+  border-radius: 50%;
+  margin-right: 15px;
+  font-size: 16px;
+  position: relative;
+}
+
+.resume .icon i,
+.resume .resume_right .resume_hobby ul li i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.resume .resume_left ul li .data {
+  color: black;
+}
+
+.resume .resume_left .resume_skills ul li {
+  display: flex;
+  margin-bottom: 10px;
+  color: black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resume .resume_left .resume_skills ul li .skill_name {
+  width: 25%;
+}
+
+.resume .resume_left .resume_skills ul li .skill_progress {
+  width: 60%;
+  margin: 0 5px;
+  height: 5px;
+  background: #009fd9;
+  position: relative;
+}
+
+.resume .resume_left .resume_skills ul li .skill_per {
+  width: 15%;
+}
+
+.resume .resume_left .resume_skills ul li .skill_progress span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #fff;
+}
+
+.resume .resume_left .resume_social .semi-bold {
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.resume .resume_right {
+  width: 520px;
+  background: #fff;
+  padding: 25px;
+}
+
+.resume .resume_right .bold {
+  color: #0bb5f4;
+}
+
+.resume .resume_right .resume_work ul,
+.resume .resume_right .resume_education ul {
+  padding-left: 40px;
+  overflow: hidden;
+}
+
+.resume .resume_right ul li {
+  position: relative;
+}
+
+.resume .resume_right ul li .date {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.resume .resume_right ul li .info {
+  margin-bottom: 20px;
+}
+
+.resume .resume_right ul li:last-child .info {
+  margin-bottom: 0;
+}
+
+.resume .resume_right .resume_work ul li:before,
+.resume .resume_right .resume_education ul li:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -25px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 2px solid #0bb5f4;
+}
+
+.resume .resume_right .resume_work ul li:after,
+.resume .resume_right .resume_education ul li:after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: -21px;
+  width: 2px;
+  height: 115px;
+  background: #0bb5f4;
+}
+
+.resume .resume_right .resume_hobby ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resume .resume_right .resume_hobby ul li {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #0bb5f4;
+  border-radius: 50%;
+  position: relative;
+  color: #0bb5f4;
+}
+
+.resume .resume_right .resume_hobby ul li i {
+  font-size: 30px;
+}
+
+.resume .resume_right .resume_hobby ul li:before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  right: -52px;
+  width: 50px;
+  height: 2px;
+  background: #0bb5f4;
+}
+
+.resume .resume_right .resume_hobby ul li:last-child:before {
+  display: none;
+}
+
+
+
+</style>
+</head>
+
+
+
+<body>
+
+<div class="header">
+ <img src="{% static 'images/ScouCV.png' %}"/>
+  <div class="header-right">
+  	<a href="Profil.html">Profile</a>
+    <a class="active" href="ScoutCV.html">CV</a>
+    
+    <a href="#settings">Settings</a>
+    <a class="btn-danger" href="{% url 'logout' %}">Logout</a>
+  </div>
+</div>
+
+
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<div class="resume">
+   <div class="resume_left">
+     <div class="resume_profile">
+       <img src="{% static 'images/user.png' %}" alt="profile_pic">
+     </div>
+     <div class="resume_content">
+       <div class="resume_item resume_info">
+         <div class="title">
+           <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
+           <p class="regular">Specialité</p>
+         </div>
+         <ul>
+           <li>
+             <div class="icon">
+               <i class="fas fa-map-signs"></i>
+             </div>
+             <div class="data">
+               {{ request.user.profil.adresse }} <br /> {{ request.user.profil.pays }}
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fas fa-mobile-alt"></i>
+             </div>
+             <div class="data">
+               {{ request.user.profil.telephone }}
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fas fa-envelope"></i>
+             </div>
+             <div class="data">
+               {{ request.user.email }}
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-weebly"></i>
+             </div>
+             <div class="data">
+               {{ request.user.profil.linkdin }}
+             </div>
+           </li>
+         </ul>
+       </div>
+       <div class="resume_item resume_skills">
+         <div class="title">
+           <p class="bold">skills</p>
+         </div>
+         <ul>
+           <li>
+             <div class="skill_name">
+               skill 1
+             </div>
+             <div class="skill_progress">
+               <span style="width: 80%;"></span>
+             </div>
+             <div class="skill_per">%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               Skill2
+             </div>
+             <div class="skill_progress">
+               <span style="width: 70%;"></span>
+             </div>
+             <div class="skill_per">%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               skill3
+             </div>
+             <div class="skill_progress">
+               <span style="width: 90%;"></span>
+             </div>
+             <div class="skill_per">%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               skill4
+             </div>
+             <div class="skill_progress">
+               <span style="width: 60%;"></span>
+             </div>
+             <div class="skill_per">%</div>
+           </li>
+           <li>
+             <div class="skill_name">
+               skill5
+             </div>
+             <div class="skill_progress">
+               <span style="width: 88%;"></span>
+             </div>
+             <div class="skill_per">%</div>
+           </li>
+         </ul>
+       </div>
+       <div class="resume_item resume_social">
+         <div class="title">
+           <p class="bold">Social</p>
+         </div>
+         <ul>
+           <li>
+             <div class="icon">
+               <i class="fab fa-facebook-square"></i>
+             </div>
+             <div class="data">
+               <p class="semi-bold">Facebook</p>
+               <p>facebook</p>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-twitter-square"></i>
+             </div>
+             <div class="data">
+               <p class="semi-bold">Twitter</p>
+               <p>twitter</p>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-youtube"></i>
+             </div>
+             <div class="data">
+               <p class="semi-bold">Youtube</p>
+               <p>youtube</p>
+             </div>
+           </li>
+           <li>
+             <div class="icon">
+               <i class="fab fa-linkedin"></i>
+             </div>
+             <div class="data">
+               <p class="semi-bold">Linkedin</p>
+               <p>linkedin</p>
+             </div>
+           </li>
+         </ul>
+       </div>
+     </div>
+  </div>
+  <div class="resume_right">
+    
+    <div class="resume_item resume_education">
+        <div class="title">
+             <p class="bold">Education</p>
+           </div>
+           <div>
+              <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Academic</a>
+              <br>
+           </div>
+        <ul>
+              {% for academic in academics %}
+              <li>
+                  <div class="date">{{ academic.annee_debut }} - {{ academic.annee_fin }}</div> 
+                  <div class="info">
+                       <p class="semi-bold">{{ academic.type_diplome }} A {{ academic.ecole }}</p> 
+                    <p>{{ academic.description_academic }}</p>
+                  </div>
+                  <div>
+                    <td><a class="btn btn-danger " href="{% url 'delete_academic' academic.id %}">Delete</a></td>
+                  </div>
+                  <br>
+                  
+              </li>
+               {% endfor %}
+          </ul>
+      </div>
+    <div class="resume_item resume_work">
+        <div class="title">
+           <p class="bold">Work Experience</p>
+         </div>
+         <div>
+            <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update Experience</a>
+            <br>
+         </div>
+        <ul>
+            {% for exp_pro in exp_pros %}
+            <li>
+              <div class="date">{{ exp_pro.annee_debut }} - {{ exp_pro.annee_fin }}</div>
+              <div class="info">                     
+                  <p>{{ exp_pro.description_exp_pro }}</p>
+                </div>
+                <div>
+                    <a class="btn btn-danger" href="{% url 'delete_experience_pro' exp_pro.id %}">Delete</a>
+                </div>
+                <br>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
-    <div class='container bg-light text-dark'>
-        <h4>Experience Pro</h4>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update Experience</a>
-        <table class="table">
-            <tr>
-                <th>Annee Debut</th>
-                <th>Annee Fin</th>
-                <th>Description</th>
-            </tr>
-        {% for exp_pro in exp_pros %}
-
-            <tr>
-                <td>{{ exp_pro.annee_debut }}</td>
-                <td>{{ exp_pro.annee_fin }}</td>
-                <td>{{ exp_pro.description_exp_pro }}</td>
-                <td><a class="btn btn-danger float-right" href="{% url 'delete_experience_pro' exp_pro.id %}">Delete</a></td>
-            </tr>
-
-        {% endfor %}
-
-        </table>
+    <div class="resume_item resume_work">
+        <div class="title">
+           <p class="bold">Projet Realisé</p>
+         </div>
+         <div>
+            <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projet</a>
+            <br>
+         </div>
+        <ul>
+            {% for projet in projets %}
+            <li>
+              <div class="date">{{ projet.annee_projet }}</div>
+              <div class="info">                     
+                  <p>{{ projet.description_projet }}</p>
+                </div>
+                <div>
+                    <a class="btn btn-danger" href="{% url 'delete_projet' projet.id %}">Delete</a>
+                </div>
+                <br>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 
-    <div class='container bg-light text-dark'>
-        <h4>Projet réalise</h4>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projet</a>
-        <table class="table">
-            <tr>
-                <th>Annee Projet</th>
-                <th>Description</th>
-            </tr>
-        {% for projet in projets %}
-
-            <tr>
-                <td>{{ projet.annee_projet }}</td>
-                <td>{{ projet.description_projet }}</td>                
-                <td><a class="btn btn-danger float-right" href="{% url 'delete_projet' projet.id %}">Delete</a></td>
-            </tr>
-
-        {% endfor %}
-
-        </table>
+    <div class="resume_item resume_work">
+        <div class="title">
+           <p class="bold">Certificat</p>
+         </div>
+         <div>
+            <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update Certificat</a>
+            <br>
+         </div>
+        <ul>
+            {% for certificat in certificats %}
+            <li>
+              <div class="date">{{ certificat.date_cert }}</div>
+              <div class="info">                     
+                <p>Certificat : {{ certificat.titre_cert }}</p>  
+                <p>Accreditation : {{ certificat.accreditation }}</p>
+                </div>
+                <div>
+                    <a class="btn btn-danger" href="{% url 'delete_certificat' certificat.id %}">Delete</a>
+                </div>
+                <br>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-
-
-    <div class='container bg-light text-dark'>
-        <h4>Certificat</h4>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update Certificat</a>
-        <table class="table">
-            <tr>
-                <th>Accreditation</th>
-                <th>Titre</th>
-                <th>Date</th>
-            </tr>
-        {% for certificat in certificats %}
-
-            <tr>
-                <td>{{ certificat.accreditation }}</td>
-                <td>{{ certificat.titre_cert }}</td>
-                <td>{{ certificat.date_cert }}</td>
-                
-                <td><a class="btn btn-danger float-right" href="{% url 'delete_certificat' certificat.id %}">Delete</a></td>
-            </tr>
-
-        {% endfor %}
-
-        </table>
-    </div>
-
-
-    <div class='container bg-light text-dark'>
+    
+    <div class="resume_item resume_Langue">
         <h4>Langue</h4>
         <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Langue</a>
         <table class="table">
@@ -125,5 +578,15 @@
 
         </table>
     </div>
-    
-{% endblock content %}
+
+      
+    </div>
+  </div>
+   
+  </div>
+</div>
+
+
+
+
+</body>

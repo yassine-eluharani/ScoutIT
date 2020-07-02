@@ -6,21 +6,21 @@ from django.contrib.auth.models import User
 
 class Profil(models.Model):
     SEX = (
-        ('H','Homme'),
-        ('F','Femme'),
+        ('Homme','Homme'),
+        ('Femme','Femme'),
     )
     STATUS = (
-        ('C','célibataire'),
-        ('M','marié(e)'),
-        ('V','veuf(ve)'),
-        ('D','divorcé(e)'),
+        ('célibataire','célibataire'),
+        ('marié(e)','marié(e)'),
+        ('veuf(ve)','veuf(ve)'),
+        ('divorcé(e)','divorcé(e)'),
     )
     user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
     nom = models.CharField(max_length=20 ,null=True)
     prenom = models.CharField(max_length=20 ,null=True)
     date_n = models.DateField(null=True)
-    sex = models.CharField(max_length=1,choices=SEX ,null=True)
-    status = models.CharField(max_length=1,choices=STATUS ,null=True)
+    sex = models.CharField(max_length=6,choices=SEX ,null=True)
+    status = models.CharField(max_length=12,choices=STATUS ,null=True)
     nationalite = models.CharField(max_length=20 ,null=True)
     pays = CountryField(blank_label='(select country)' ,null=True)
     ville = models.CharField(max_length=20 ,null=True)
@@ -40,15 +40,15 @@ class Ecole(models.Model):
 
 class Academic(models.Model):
     TYPE = (
-        ('1','CPGE/BTS/DEUG/...'),
-        ('2','Licence '),
-        ('3','Master'),
-        ('4','Doctorat'),
+        ('CPGE/BTS/DEUG/...','CPGE/BTS/DEUG/...'),
+        ('Licence','Licence '),
+        ('Master','Master'),
+        ('Doctorat','Doctorat'),
     )
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)
     annee_debut = models.IntegerField(null=True)
     annee_fin = models.IntegerField(null=True)
-    type_diplome = models.CharField(max_length=1,choices=TYPE ,null=True)
+    type_diplome = models.CharField(max_length=20,choices=TYPE ,null=True)
     description_academic = models.TextField(null=True,blank=True)
     ecole = models.ForeignKey('Ecole' , on_delete=models.DO_NOTHING ,null=True)
     def __str__(self):
