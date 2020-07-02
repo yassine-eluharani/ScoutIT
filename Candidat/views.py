@@ -46,12 +46,12 @@ def register(request):
             profil.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account was created for ' + username)
-            return redirect('login')
+            return redirect('index')
     context ={
         'form':form,
         'profil_form' :profil_form
     }
-    return render(request ,'registration/register.html',context)
+    return render(request ,'index.html',context)
 
 @unauthenticated_user
 def loginPage(request):
@@ -61,11 +61,11 @@ def loginPage(request):
         user = authenticate(request,username = username , password=password)  
         if user is not None:
             login(request,user)
-            return redirect('/')
+            return redirect('profil')
         else:
             messages.info(request,'Username or Password is incorrect')
     context={}
-    return render(request ,'registration/login.html',context)
+    return render(request ,'index.html',context)
 
 def logoutUser(request):
     logout(request)
