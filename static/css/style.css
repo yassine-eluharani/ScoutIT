@@ -1,0 +1,439 @@
+body { 
+  margin: auto;
+  font-family: raleway, sans-serif;
+  overflow: hidden;
+  width:100%;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 127px;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  
+  color:white;
+}
+
+.right {
+  right: 0;
+  
+  color:white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+
+.centered img {
+  width: 200px;
+  border-radius: 50%;
+}
+.image{
+
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered:hover .image  {
+  opacity: 0;
+
+}
+
+
+
+.centered:hover .middle{
+  opacity: 1;
+
+
+}
+
+
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.btn-group button{
+
+  background-color: #FFDC00;
+   border: 1px solid ; 
+  color: white; 
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 200px; /* Set a width if needed */
+  display: block;
+    transition: 0.3s;
+}
+.btn-group button:not(:last-child) {
+  border-bottom: none;}
+
+
+.btn-group button:hover {
+   background-color: black ;
+  color: #FFDC00;
+
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+.modal1 {
+	color:black;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+.modal1-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+
+.container1{
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #FFDC00;
+  color: black;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
+.hero {
+  background-color: black;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  
+}
+
+.hero2 {
+  background-color: black;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  
+}
+
+.cube {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px  #FFDC00;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+          transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  -webkit-animation: cube 12s ease-in forwards infinite;
+          animation: cube 12s ease-in forwards infinite;
+}
+.cube:nth-child(2n) {
+  border-color:  #FFDC00;
+}
+.cube:nth-child(2) {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+.cube:nth-child(3) {
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube:nth-child(4) {
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube:nth-child(5) {
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube:nth-child(6) {
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+  left: 50vw;
+  top: 10vh;
+}
+
+@-webkit-keyframes cube {
+  from {
+    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
+            transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes cube {
+  from {
+    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
+            transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+.cube2 {
+  position: absolute;
+  top: 80vh;
+  left: 45vw;
+  width: 10px;
+  height: 10px;
+  border: solid 1px  #FFDC00;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+          transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  -webkit-animation: cube 12s ease-in forwards infinite;
+          animation: cube 12s ease-in forwards infinite;
+}
+.cube2:nth-child(2n) {
+  border-color:  #FFDC00;
+}
+.cube2:nth-child(2) {
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  left: 25vw;
+  top: 40vh;
+}
+.cube2:nth-child(3) {
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  left: 75vw;
+  top: 50vh;
+}
+.cube2:nth-child(4) {
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+  left: 90vw;
+  top: 10vh;
+}
+.cube2:nth-child(5) {
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+  left: 10vw;
+  top: 85vh;
+}
+.cube2:nth-child(6) {
+  -webkit-animation-delay: 8s;
+          animation-delay: 8s;
+  left: 50vw;
+  top: 10vh;
+}
+
+@-webkit-keyframes cube2 {
+  from {
+    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
+            transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+@keyframes cube2 {
+  from {
+    -webkit-transform: scale(0) rotate(0deg) translate(-50%, -50%);
+            transform: scale(0) rotate(0deg) translate(-50%, -50%);
+    opacity: 1;
+  }
+  to {
+    -webkit-transform: scale(20) rotate(960deg) translate(-50%, -50%);
+            transform: scale(20) rotate(960deg) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+

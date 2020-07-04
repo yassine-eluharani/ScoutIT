@@ -9,6 +9,8 @@ from .decorators import unauthenticated_user
 from .models import *
 from .forms import *
 
+
+@unauthenticated_user
 def index(request):
     return render(request,'index.html')
 
@@ -46,12 +48,12 @@ def register(request):
             profil.save()
             username = form.cleaned_data.get('username')
             messages.success(request,'Account was created for ' + username)
-            return redirect('index')
+            return redirect('login')
     context ={
         'form':form,
         'profil_form' :profil_form
     }
-    return render(request ,'index.html',context)
+    return render(request ,'registration/register.html',context)
 
 @unauthenticated_user
 def loginPage(request):
@@ -65,11 +67,11 @@ def loginPage(request):
         else:
             messages.info(request,'Username or Password is incorrect')
     context={}
-    return render(request ,'index.html',context)
+    return render(request ,'registration/login.html',context)
 
 def logoutUser(request):
     logout(request)
-    return redirect('profil')
+    return redirect('index')
 
 #Projet_realise
 @login_required(login_url='login')

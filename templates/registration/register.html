@@ -1,85 +1,318 @@
-<h3>Register</h3>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        
-        <p>
-            {{ form.username.label }}
-            {{ form.username }}
-        </p>
-        
-        <p>
-            {{ form.email.label }}
-            {{ form.email }}
-        </p>
-            
-        <p>
-            {{ form.password1.label }}
-            {{ form.password1 }}
-        </p>    
-        
-        <p>
-            {{ form.password2.label }}
-            {{ form.password2 }}
-        </p>
-        
-        <p>
-            {{ profil_form.nom.label }}
-            {{ profil_form.nom }}
-        </p>
-        
-        <p>
-            {{ profil_form.prenom.label }}
-            {{ profil_form.prenom }}
-        </p>
-        
-        <p>
-            {{ profil_form.date_n.label }}
-            {{ profil_form.date_n }}
-        </p>
-        
-        <p>
-            {{ profil_form.sex.label }}
-            {{ profil_form.sex }}
-        </p>
-        
-        <p>
-            {{ profil_form.status.label }}
-            {{ profil_form.status }}
-        </p>
-        
-        <p>
-            {{ profil_form.nationalite.label }}
-            {{ profil_form.nationalite }}
-        </p>
-        
-        <p>
-            {{ profil_form.pays.label }}
-            {{ profil_form.pays }}
-        </p>
-        
-        <p>
-            {{ profil_form.ville.label }}
-            {{ profil_form.ville }}
-        </p>
-        
-        <p>
-            {{ profil_form.telephone.label }}
-            {{ profil_form.telephone }}
-        </p>
-        
-        <p>
-            {{ profil_form.adresse.label }}
-            {{ profil_form.adresse }}
-        </p>
-        
-        <p>
-            {{ profil_form.linkdin.label }}
-            {{ profil_form.linkdin }}
-        </p>
-        
+<style>
+    body {
+        margin: auto;
+        font-family: raleway, sans-serif;
 
-        {{ form.errors }}
+        width: 100%;
+    }
 
-        <input type="submit" name="CreateUser">
-    </form>
+    .header {
+        overflow: hidden;
+        background-color: #FFDC00;
+        padding: 20px 10px;
+    }
+
+    .header a {
+        float: left;
+        color: black;
+        text-align: center;
+        padding: 30px;
+        text-decoration: none;
+        font-size: 23px;
+        line-height: 25px;
+        border-radius: 4px;
+    }
+
+
+
+    .header a:hover {
+        background-color: white;
+        color: black;
+    }
+
+    .header a.active {
+        background-color: black;
+        color: white;
+    }
+
+    .header-right {
+        float: right;
+    }
+
+    @media screen and (max-width: 500px) {
+        .header a {
+            float: none;
+            display: block;
+            text-align: left;
+        }
+
+        .header-right {
+            float: none;
+        }
+    }
+
+    .register {
+        background: -webkit-linear-gradient(left, #FFDC00, #EDA11D);
+        margin-top: 3%;
+        padding: 3%;
+    }
+
+    .register-left {
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+    .register-left input {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        width: 60%;
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #383d41;
+        margin-top: 30%;
+        margin-bottom: 3%;
+        cursor: pointer;
+    }
+
+    .register-right {
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+
+    .register-left img {
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite alternate;
+        animation: mover 1s infinite alternate;
+    }
+
+    @-webkit-keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .register-left p {
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+
+    .register .register-form {
+        padding: 10%;
+        margin-top: 10%;
+    }
+
+    .btnRegister {
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        background: #FFDC00;
+        color: #000000;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .register .nav-tabs {
+        margin-top: 3%;
+        border: none;
+        background: #0062cc;
+        border-radius: 1.5rem;
+        width: 28%;
+        float: right;
+    }
+
+    .register .nav-tabs .nav-link {
+        padding: 2%;
+        height: 34px;
+        font-weight: 600;
+        color: #fff;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+
+    .register .nav-tabs .nav-link:hover {
+        border: none;
+    }
+
+    .register .nav-tabs .nav-link.active {
+        width: 100px;
+        color: #0062cc;
+        border: 2px solid #0062cc;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+
+    .register-heading {
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Register</title>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <div class="topnav">
+            <img src='{% static "images/ScouCV.png" %}' />
+            <div class="header-right">
+                <a class="active" href="index">Home</a>
+                <a href="Contact.html">Contact</a>
+                <a href="About.html">About</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                <h3>Welcome</h3>
+            </div>
+
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Apply as a Candidate</h3>
+                        <div class="row register-form">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{ form.username.label }}:
+                                        <br>
+                                        {{ form.username }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.email.label }}:
+                                        <br>
+                                        {{ form.email }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.password1.label }}:
+                                        <br>
+                                        {{ form.password1 }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.password2.label }}:
+                                        <br>
+                                        {{ form.password2 }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.nom.label }}:
+                                        <br>
+                                        {{ profil_form.nom }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.prenom.label }}
+                                        <br>
+                                        {{ profil_form.prenom }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.date_n.label }}:
+                                        <br>
+                                        {{ profil_form.date_n }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.sex.label }}:
+                                        <br>
+                                        {{ profil_form.sex }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.status.label }}:
+                                        <br>
+                                        {{ profil_form.status }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        {{ profil_form.nationalite.label }}:
+                                        <br>
+                                        {{ profil_form.nationalite }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.pays.label }}:
+                                        <br>
+                                        {{ profil_form.pays }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.ville.label }}:
+                                        <br>
+                                        {{ profil_form.ville }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.telephone.label }}:
+                                        <br>
+                                        {{ profil_form.telephone }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.adresse.label }}:
+                                        <br>
+                                        {{ profil_form.adresse }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ profil_form.linkdin.label }}:
+                                        <br>
+                                        {{ profil_form.linkdin }}
+                                    </div>
+                                    <input type="submit" class="btnRegister" name="CreateUser" value="Register" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
