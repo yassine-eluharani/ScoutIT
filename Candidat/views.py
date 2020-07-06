@@ -4,17 +4,19 @@ from django.contrib.auth import authenticate ,login ,logout
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.http import HttpResponse
 #Local imports
-from .decorators import unauthenticated_user
+from .decorators import unauthenticated_user , allowed_users
 from .models import *
 from .forms import *
 
 
-@unauthenticated_user
+
 def index(request):
     return render(request,'index.html')
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def profil(request):
     academics = request.user.profil.academic_set.all()
     exp_pros = request.user.profil.experience_pro_set.all()
@@ -62,7 +64,14 @@ def loginPage(request):
         user = authenticate(request,username = username , password=password)  
         if user is not None:
             login(request,user)
-            return redirect('profil')
+            group = None
+            if request.user.groups.exists():
+                group = request.user.groups.all()[0].name               
+                if group == 'Candidat':
+                    return redirect('profil')
+                else:
+                    return redirect('profilEntr')
+                    
         else:
             messages.info(request,'Username or Password is incorrect')
     context={}
@@ -75,6 +84,7 @@ def logoutUser(request):
 
 #Projet_realise
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def createProjet(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Projet_realise , fields=('annee_projet','description_projet') ,extra=2)
@@ -92,6 +102,7 @@ def createProjet(request):
     return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def deleteProjet(request ,pk):
 
     project = Projet_realise.objects.get(id=pk)
@@ -106,6 +117,7 @@ def deleteProjet(request ,pk):
 
 #Experience_Pro
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def createExperience_pro(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Experience_Pro , fields=('annee_debut' ,'annee_fin' ,'description_exp_pro') ,extra=2)
@@ -123,6 +135,7 @@ def createExperience_pro(request):
     return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def deleteExperience_pro(request ,pk):
     exp_pro = Experience_Pro.objects.get(id=pk)
     if request.method == 'POST':
@@ -136,6 +149,7 @@ def deleteExperience_pro(request ,pk):
 
 #Academic
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def createAcademic(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Academic , fields=('annee_debut','annee_fin' ,'type_diplome','description_academic','ecole') ,extra=2)
@@ -153,6 +167,7 @@ def createAcademic(request):
     return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def deleteAcademic(request ,pk):
 
     academic = Academic.objects.get(id=pk)
@@ -167,6 +182,7 @@ def deleteAcademic(request ,pk):
 
 #Certificat
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def createCertificat(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Certificat , fields=('accreditation','titre_cert','date_cert') ,extra=2)
@@ -184,6 +200,7 @@ def createCertificat(request):
     return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def deleteCertificat(request ,pk):
 
     certificat = Certificat.objects.get(id=pk)
@@ -198,6 +215,7 @@ def deleteCertificat(request ,pk):
 
 #Language
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def createLanguage(request):
     
     ProjetFormSet = inlineformset_factory(Profil , Language , fields=('langue','level') ,extra=2)
@@ -215,6 +233,7 @@ def createLanguage(request):
     return render(request,'form/add-from.html',context)
 
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def deleteLanguage(request ,pk):
 
     langue = Language.objects.get(id=pk)

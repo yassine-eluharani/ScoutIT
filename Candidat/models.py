@@ -94,5 +94,5 @@ class Language(models.Model):
     level = models.CharField(max_length=2,choices=lvl ,null=True)
 
     def __str__(self):
-        return  self.langue + " " + self.level
+        return  self.langue + " " + self.level + " " + self.profil.nom
     
