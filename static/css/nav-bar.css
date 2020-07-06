@@ -2,10 +2,12 @@
  .collapse-btn{
 	 color: black;
  }
+ 
 .header {
 	overflow: hidden;
 	background-color: #FFDC00;
 	padding: 0px 10px;
+	
   }
   
   .header a {

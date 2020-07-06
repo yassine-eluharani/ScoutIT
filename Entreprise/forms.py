@@ -6,7 +6,10 @@ from django import forms
 class CreateProfilEntr(forms.ModelForm):
     class Meta:
         model= ProfilEntreprise
-        fields='__all__'
-        exclude = ('user',)
+        fields=['nom_entr']        
+        widgets = {
+            'nom_entr' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Business name'}),
+        }
+        
 
 

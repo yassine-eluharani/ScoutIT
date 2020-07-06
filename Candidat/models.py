@@ -6,14 +6,16 @@ from django.contrib.auth.models import User
 
 class Profil(models.Model):
     SEX = (
-        ('Homme','Homme'),
-        ('Femme','Femme'),
+        ('', '(Gender)'),
+        ('Homme','Male'),
+        ('Femme','Female'),
     )
     STATUS = (
-        ('célibataire','célibataire'),
-        ('marié(e)','marié(e)'),
-        ('veuf(ve)','veuf(ve)'),
-        ('divorcé(e)','divorcé(e)'),
+        ('', '(Status)'),
+        ('Single','Single'),
+        ('Married','Married'),
+        ('Widowed','Widowed'),
+        ('Divorced','Divorced'),
     )
     user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
     nom = models.CharField(max_length=20 ,null=True)
@@ -22,7 +24,7 @@ class Profil(models.Model):
     sex = models.CharField(max_length=6,choices=SEX ,null=True)
     status = models.CharField(max_length=12,choices=STATUS ,null=True)
     nationalite = models.CharField(max_length=20 ,null=True)
-    pays = CountryField(blank_label='(select country)' ,null=True)
+    pays = CountryField(blank_label='(Country)' ,null=True)
     ville = models.CharField(max_length=20 ,null=True)
     telephone = models.CharField(max_length=20 ,null=True)
     adresse = models.TextField(null=True,blank=True)

@@ -7,111 +7,84 @@
 
 
 {% block content %}
-    <div class="container register">
-        <div class="row">
-            <div class="col-md-3 register-left">
-                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-                <h3>Welcome</h3>
-            </div>
-
-            <div class="col-md-9 register-right">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Apply as a Candidate</h3>
-                        <div class="row register-form">
-                            <form action="" method="POST">
-                                {% csrf_token %}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        {{ form.username.label }}:
-                                        <br>
-                                        {{ form.username }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.email.label }}:
-                                        <br>
-                                        {{ form.email }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.password1.label }}:
-                                        <br>
-                                        {{ form.password1 }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ form.password2.label }}:
-                                        <br>
-                                        {{ form.password2 }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.nom.label }}:
-                                        <br>
-                                        {{ profil_form.nom }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.prenom.label }}
-                                        <br>
-                                        {{ profil_form.prenom }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.date_n.label }}:
-                                        <br>
-                                        {{ profil_form.date_n }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.sex.label }}:
-                                        <br>
-                                        {{ profil_form.sex }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.status.label }}:
-                                        <br>
-                                        {{ profil_form.status }}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-
-                                    <div class="form-group">
-                                        {{ profil_form.nationalite.label }}:
-                                        <br>
-                                        {{ profil_form.nationalite }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.pays.label }}:
-                                        <br>
-                                        {{ profil_form.pays }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.ville.label }}:
-                                        <br>
-                                        {{ profil_form.ville }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.telephone.label }}:
-                                        <br>
-                                        {{ profil_form.telephone }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.adresse.label }}:
-                                        <br>
-                                        {{ profil_form.adresse }}
-                                    </div>
-                                    <div class="form-group">
-                                        {{ profil_form.linkdin.label }}:
-                                        <br>
-                                        {{ profil_form.linkdin }}
-                                    </div>
-                                    <input type="submit" class="btnRegister" name="CreateUser" value="Register" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
+    <div class="container mt-5 mb-5 pr-5 pt-5 pl-5 pb-4 border border-secondary rounded">
+        <form action="" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ form.username }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ form.email }}
                 </div>
             </div>
 
-        </div>
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ form.password1 }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ form.password2 }}
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.nom }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.prenom }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.date_n }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.sex }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.status }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.nationalite }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.pays }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.ville }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.adresse }}
+                </div>                
+            </div>
+
+            <div class="row">
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.telephone }}
+                </div>
+                <div class="col-lg col-sm-12 p-3">
+                    {{ profil_form.linkdin }}
+                </div>
+            </div>
+
+            <div class="row p-3">
+                <input type="submit" class="btn btn-dark btn-block button-hover" name="CreateUser" value="Register" />
+            </div>
+            <a href="{% url 'login' %}">I already have an account.</a>
+        
+        </form>
     </div>
-
 
 {% endblock %}

@@ -1,15 +1,32 @@
-<h3>Login</h3>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+	<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
 
 
-
-	<form method="POST" action="">
+{% block content %}
+	<div class="container mt-5 mb-5 pr-5 pt-5 pl-5 pb-4 border border-secondary rounded">
+		<form method="POST" action="">
 		{% csrf_token %}
-		<input type="text" name="username" placeholder="Username ..">
-		<input type="password" name="password" placeholder="Password ..">
-		<input type="submit" value="Login">
+		<div class="row p-3">
+			<input class="form-control" type="text" name="username" placeholder="Username ..">
+		</div>
+		<div class="row p-3">
+			<input class="form-control" type="password" name="password" placeholder="Password ..">
+		</div>
+		<div class="row p-3">
+			<input class="btn btn-dark btn-block button-hover" type="submit" value="Login">
+		</div>
+		<a href="{% url 'register' %}">Don't have an account ? Regiter as a Candidate here</a>
+		<a class="float-right" href="{% url 'registerEntr' %}">Don't have an account ? Regiter as a Business here</a>
 	</form>
 
 
 	{% for message in messages %}
 		<p> {{ message }} </p>
 	{% endfor %}
+	</div>
+{% endblock %}	
+	
