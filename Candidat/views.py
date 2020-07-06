@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate ,login ,logout
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.http import HttpResponse
+from django.contrib.auth.models import Group
+
 #Local imports
 from .decorators import unauthenticated_user , allowed_users
 from .models import *
@@ -48,6 +49,9 @@ def register(request):
             profil.user = user
             profil.save()
             username = form.cleaned_data.get('username')
+
+            group = Group.objects.get(name="Candidat")
+            user.groups.add(group)
             messages.success(request,'Account was created for ' + username)
             return redirect('login')
     context ={
