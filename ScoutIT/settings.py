@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django_countries',
 
     #Local APP
-    'Candidat'
+    'Candidat',
+    'Entreprise'
 ]
 
 MIDDLEWARE = [

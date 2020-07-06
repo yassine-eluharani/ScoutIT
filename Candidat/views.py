@@ -20,8 +20,7 @@ def profil(request):
     exp_pros = request.user.profil.experience_pro_set.all()
     projets = request.user.profil.projet_realise_set.all()
     certificats = request.user.profil.certificat_set.all()
-    langues = request.user.profil.language_set.all()
-    print(academics,exp_pros)
+    langues = request.user.profil.language_set.all()    
     context={
         'academics' : academics,
         'exp_pros':exp_pros,
@@ -29,7 +28,7 @@ def profil(request):
         'certificats':certificats,
         'langues' : langues
     }
-    return render(request ,'profil.html',context)
+    return render(request ,'candidat/profil.html',context)
 
 
 
@@ -73,6 +72,7 @@ def logoutUser(request):
     logout(request)
     return redirect('index')
 
+
 #Projet_realise
 @login_required(login_url='login')
 def createProjet(request):
@@ -102,6 +102,7 @@ def deleteProjet(request ,pk):
         'item':project
     }
     return render(request,'form/delete.html',context)
+
 
 #Experience_Pro
 @login_required(login_url='login')
