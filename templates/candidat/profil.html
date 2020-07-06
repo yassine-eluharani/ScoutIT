@@ -45,14 +45,6 @@
                 {{ request.user.email }}
               </div>
             </li>
-            <li>
-              <div class="icon">
-                <i class="fab fa-weebly"></i>
-              </div>
-              <div class="data">
-                {{ request.user.profil.linkdin }}
-              </div>
-            </li>
           </ul>
         </div>
         <div class="resume_item resume_skills">
@@ -84,24 +76,6 @@
               </div>
               <div class="skill_progress">
                 <span style="width: 90%;"></span>
-              </div>
-              <div class="skill_per">%</div>
-            </li>
-            <li>
-              <div class="skill_name">
-                skill4
-              </div>
-              <div class="skill_progress">
-                <span style="width: 60%;"></span>
-              </div>
-              <div class="skill_per">%</div>
-            </li>
-            <li>
-              <div class="skill_name">
-                skill5
-              </div>
-              <div class="skill_progress">
-                <span style="width: 88%;"></span>
               </div>
               <div class="skill_per">%</div>
             </li>
@@ -145,7 +119,7 @@
               </div>
               <div class="data">
                 <p class="semi-bold">Linkedin</p>
-                <p>linkedin</p>
+                <p>{{ request.user.profil.linkdin }}</p>
               </div>
             </li>
           </ul>
@@ -159,7 +133,7 @@
           <p class="bold">Education</p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Academic</a>
+          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Education</a>
           <br>
         </div>
         <ul>
@@ -185,7 +159,7 @@
         </div>
         <div>
           <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update
-            Experience</a>
+            Work Experience</a>
           <br>
         </div>
         <ul>
@@ -206,10 +180,10 @@
 
       <div class="resume_item resume_work">
         <div class="title">
-          <p class="bold">Projet Realisé</p>
+          <p class="bold">Projects </p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projet</a>
+          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projects</a>
           <br>
         </div>
         <ul>
@@ -230,11 +204,11 @@
 
       <div class="resume_item resume_work">
         <div class="title">
-          <p class="bold">Certificat</p>
+          <p class="bold">Certificate</p>
         </div>
         <div>
           <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update
-            Certificat</a>
+            Certificate</a>
           <br>
         </div>
         <ul>
@@ -242,7 +216,7 @@
           <li>
             <div class="date">{{ certificat.date_cert }}</div>
             <div class="info">
-              <p>Certificat : {{ certificat.titre_cert }}</p>
+              <p>Certificate : {{ certificat.titre_cert }}</p>
               <p>Accreditation : {{ certificat.accreditation }}</p>
             </div>
             <div>
@@ -255,11 +229,11 @@
       </div>
 
       <div class="resume_item resume_Langue">        
-        <p class="bold">Langue</p>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Langue</a>
+        <p class="bold">Languages</p>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Language</a>
         <table class="table">
           <tr>
-            <th>Langue</th>
+            <th>Language</th>
             <th>Level</th>
           </tr>
           {% for langue in langues %}
