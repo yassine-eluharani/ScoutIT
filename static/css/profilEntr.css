@@ -1,0 +1,11 @@
+body {
+    background: #E3E2DE;
+    font-size: 14px;
+    line-height: 22px;
+    color: #555555;
+  }
+
+  .button-hover:hover {
+    background-color: #FFDC00;
+    color: black;
+}

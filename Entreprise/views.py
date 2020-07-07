@@ -8,13 +8,33 @@ from django.contrib.auth.models import Group
 from .models import *
 from Candidat.decorators import *
 from Candidat.forms import CreateUserForm
-from .forms import CreateProfilEntr
+from .forms import CreateProfilEntr ,AddOfferForm
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])
 def profilEntr(request):
-    context={}
+    offres = request.user.profilentreprise.offre_set.all()
+    context={        
+        'offres':offres
+    }
     return render(request ,'entreprise/profilEntr.html',context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Entreprise'])
+def AddOffer(request):    
+    entreprise = request.user.profilentreprise        
+    form = AddOfferForm(initial={'entreprise' : entreprise})
+    if request.method == 'POST':            
+        form = AddOfferForm(request.POST, initial={'entreprise' : entreprise})        
+        if form.is_valid():
+            form.save()            
+            return redirect("profilEntr")
+    context={
+        'form' : form
+    }
+    return render(request,'form/add-formEntr.html',context)
+
 
 @unauthenticated_user
 def registerEntr(request):

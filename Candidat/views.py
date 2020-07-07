@@ -94,7 +94,7 @@ def createProjet(request):
     ProjetFormSet = inlineformset_factory(Profil , Projet_realise , fields=('annee_projet','description_projet') ,extra=2)
     profil = request.user.profil
     formset = ProjetFormSet(instance=profil)    
-    if request.method == 'POST':
+    if request.method == 'POST':        
         formset = ProjetFormSet(request.POST ,instance=profil) 
         if formset.is_valid():
             formset.save()
@@ -227,7 +227,7 @@ def createLanguage(request):
     formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
     if request.method == 'POST':
         formset = ProjetFormSet(request.POST ,instance=profil) 
-        if formset.is_valid():
+        if formset.is_valid():            
             formset.save()
             return redirect("profil")
     
@@ -241,7 +241,6 @@ def createLanguage(request):
 def deleteLanguage(request ,pk):
 
     langue = Language.objects.get(id=pk)
-    print(langue)
     if request.method == 'POST':
         langue.delete()
         return redirect("profil")

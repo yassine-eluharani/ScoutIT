@@ -1,14 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <form action="" method="POST">{% csrf_token %}
-        {{ from }}
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}
         {% for form in formset  %}
         {{ formset.management_form }}
-        {{ form }}
+        <div class="row">
+            <div class="col">
+                {{ form.as_p }}
+            </div>
+        </div>
         <hr>
         {% endfor %}
-
-        <input type="submit" name="submit">
+        <input class="btn btn-dark btn-block mt-3 button-hover mb-5" type="submit" name="submit">
     </form>
+</div>
 {% endblock content %}

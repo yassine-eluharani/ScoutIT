@@ -2,9 +2,26 @@
 {% load static %}
 
 {% block style %}
-  
+    <link rel="stylesheet" href="{% static 'css/profilEntr.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>Entreprise</h1>
+    <div class="container">
+        <div class="row">
+            {% for offre in offres %}
+                <div class="col-lg-4 col-sm-12 mt-4 shadow-lg border border-secandary rounded mycol">
+                    
+                    <p>{{ offre.poste }}</p>
+                    <p>{{ offre.diplome }}</p>
+                    <p>{{ offre.experience }}</p>
+                    <p>{{ offre.description }}</p>
+                    
+                </div>            
+            {% endfor %}
+        </div>
+        <div class="row p-3">         
+            <a class="btn btn-dark btn-block button-hover" href="{% url 'add_offer' %}">Post a job offer</a>
+		</div>
+
+    </div>
 {% endblock %}
