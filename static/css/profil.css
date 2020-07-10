@@ -1,7 +1,21 @@
 body { 
     margin: 0;
     font-family: raleway, sans-serif;
+    background: #E3E2DE;
+    font-size: 14px;
+    line-height: 22px;
+    color: #555555;
   }
+
+.button-hover{
+  margin-bottom: 1rem;
+  
+}
+
+  .button-hover:hover {
+    background-color: #555555;
+    
+}
       
   * {
     margin: 0;
@@ -11,12 +25,6 @@ body {
     font-family: "raleway", sans-serif;
   }
   
-  body {
-    background: #E3E2DE;
-    font-size: 14px;
-    line-height: 22px;
-    color: #555555;
-  }
   
   .bold {
     font-weight: 700;

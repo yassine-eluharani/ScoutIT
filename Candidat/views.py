@@ -18,7 +18,7 @@ def index(request):
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
-def profil(request):
+def cv(request):
     academics = request.user.profil.academic_set.all()
     exp_pros = request.user.profil.experience_pro_set.all()
     projets = request.user.profil.projet_realise_set.all()
@@ -32,6 +32,11 @@ def profil(request):
         'langues' : langues
     }
     return render(request ,'candidat/profil.html',context)
+
+def profil(request):
+    
+    context={}
+    return render(request,'candidat/profil-personel.html',context)
 
 
 

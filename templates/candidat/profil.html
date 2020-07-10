@@ -17,6 +17,7 @@
       <div class="resume_content">
         <div class="resume_item resume_info">
           <div class="title">
+            <a class="btn btn-dark btn-block button-hover" href="{% url 'profil_personel' %}">Update Profil</a>
             <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
             <p class="regular">Specialité</p>
           </div>
