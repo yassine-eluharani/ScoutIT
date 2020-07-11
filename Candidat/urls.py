@@ -9,7 +9,10 @@ urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('cv/', views.cv, name="profil"),
+    path('Updateprofil/',views.updateProfil,name="Updateprofil"),
     path('profil_personel/',views.profil,name="profil_personel"),
+
+
     
     #Academic Paths
     path('create_academic/', views.createAcademic, name="create_academic"),

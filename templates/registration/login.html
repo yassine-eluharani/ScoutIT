@@ -22,10 +22,11 @@
 		<a href="{% url 'register' %}">Don't have an account ? Regiter as a Candidate here</a>
 		<a class="float-right" href="{% url 'registerEntr' %}">Don't have an account ? Regiter as a Business here</a>
 	</form>
+	<br>
 
 
 	{% for message in messages %}
-		<p> {{ message }} </p>
+		<p class="text-danger"> {{ message }} </p>
 	{% endfor %}
 	</div>
 {% endblock %}	

@@ -34,15 +34,28 @@ def cv(request):
     return render(request ,'candidat/profil.html',context)
 
 
+def profil(request):
+
+    return render(request,'candidat/profil-personel.html')
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
-def profil(request):
+def updateProfil(request):
     profil = request.user.profil
+    user = request.user
+    formUser = EmailUsenameUpdateForm(instance=user)
     form = CreateProfil(instance=profil)
+    if request.method == 'POST':        
+        formUser = EmailUsenameUpdateForm(request.POST,instance=user)
+        form = CreateProfil(request.POST, request.FILES, instance=profil)
+        if form.is_valid() and formUser.is_valid():        
+            formUser.save()
+            form.save()        
     context={
-        'form':form
+        'form':form,
+        'formUser' :formUser
     }
-    return render(request,'candidat/profil-personel.html',context)
+    return render(request,'candidat/update-profil-personel.html',context)
 
 
 

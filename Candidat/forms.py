@@ -22,14 +22,28 @@ class CreateUserForm(UserCreationForm):
             'email' : forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}),           
         }
 
+
+class EmailUsenameUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username','email']
+        widgets = {
+            'username' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Username'}),
+            'email' : forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}),           
+        }
+
+
+
+
 class DateInput(forms.DateInput):
     input_type = 'date'
     value = 'Birthdate'
 
 class CreateProfil(forms.ModelForm):
+    profil_pic = forms.ImageField(label=('Profile Picture'),required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput)
     class Meta:
         model= Profil
-        fields=['nom', 'prenom', 'date_n', 'sex', 'status', 'nationalite', 'pays', 'ville', 'telephone', 'adresse', 'linkdin']        
+        fields=['nom', 'prenom', 'date_n', 'sex', 'status', 'nationalite', 'pays', 'ville', 'telephone', 'adresse', 'linkdin' ,'profil_pic']        
         widgets = {
             'nom' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}),
             'prenom' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}),  

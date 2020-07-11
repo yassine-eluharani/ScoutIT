@@ -5,26 +5,34 @@
 {% endblock style %}
 
 {% block content %}
-<div class="container emp-profile">        
+<div class="container emp-profile">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
         <div class="row mb-3">
-                <div class="col-md-4">
-                    <div class="profile-img">
-                        <div class="row ml-5">
-                            <img src="{{ request.user.profil.profil_pic.url }}" alt="" />                        
-                        </div>                                                
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <div class="row ml-5">
+                        <img src="{{ request.user.profil.profil_pic.url }}" alt="" />
+                    </div>
+                    <div class="row ml-5 mt-3">
+                        {{ form.profil_pic }}
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-6 mt-5">
-                    <div class="profile-head">
-                        <h5>
-                            <div class="row">
-                                <div class="col">
-                                    {{ request.user.profil.nom }} {{ request.user.profil.prenom }}
-                                </div>                                
+            <div class="col-md-6 mt-5">
+                <div class="profile-head">
+                    <h5>
+                        <div class="row">
+                            <div class="col">
+                                {{ form.nom }}
                             </div>
-                        </h5>
-                        <!-- <p class="proile-rating">RANKINGS :</p>
+                            <div class="col">
+                                {{ form.prenom }}
+                            </div>
+                        </div>
+                    </h5>
+                    <!-- <p class="proile-rating">RANKINGS :</p>
                                      <span class="fa fa-star checked"></span>
                                      <span class="fa fa-star checked"></span>
                                      <span class="fa fa-star checked"></span>
@@ -32,41 +40,51 @@
                                      <span class="fa fa-star"></span> -->
 
 
-                        <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                    aria-controls="home" aria-selected="true">Personal informations</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                    aria-controls="profile" aria-selected="false">Personality</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                aria-controls="home" aria-selected="true">Personal informations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                aria-controls="profile" aria-selected="false">Personality</a>
+                        </li>
+                    </ul>
                 </div>
-                           
+            </div>
+            <div class="col-md-2  mt-5">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+            </div>
         </div>
         <div class="row">
-            <div class="col-md-4 ">                
-                    <h3>Contact:</h3>
-                    <p>Phone: {{ request.user.profil.telephone }}</p>
-                    <p>Email: {{ request.user.email }}</p>
-                    <p>Adress: {{ request.user.profil.adresse }}</p>
+            <div class="col-md-4 ">
+                <h3>Contact:</h3>
+                <p>Phone: {{ form.telephone }}</p>
+                <p>Email: {{ formUser.email }}</p>
+                <p>Adress: {{ form.adresse }}</p>
 
 
-                    <a href="#" class="fa  fa-linkedin"></a>
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa  fa-linkedin"></a>
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">                        
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label>Username:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ formUser.username }}</p>
+                            </div>
+                        </div>
                         <div class="row mt-3">
                             <div class="col-md-6">
                                 <label>Gender:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.sex }}</p>
+                                <p>{{ form.sex }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -74,7 +92,7 @@
                                 <label>Birthday:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.date_n }}</p>
+                                <p>{{ form.date_n }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -82,7 +100,7 @@
                                 <label>Status:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.status }}</p>
+                                <p>{{ form.status }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -90,7 +108,7 @@
                                 <label>Nationality:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.nationalite }}</p>
+                                <p>{{ form.nationalite }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -98,7 +116,7 @@
                                 <label>Country of residence:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.pays }}</p>
+                                <p>{{ form.pays }}</p>
                             </div>
                         </div>
                         <div class="row mt-3">
@@ -106,7 +124,7 @@
                                 <label>City:</label>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ request.user.profil.ville }}</p>
+                                <p>{{ form.ville }}</p>
                             </div>
                         </div>
                     </div>
@@ -159,8 +177,22 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="row mt-5">
+                    <div class="col">
+                        <input type="submit" class="btn btn-dark btn-block button-hover" name="UpdateProfil"
+                            value="Update" />
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+    </form>
+    <br>
+    {% for message in messages %}
+    <p class="text-danger"> {{ message }} </p>
+    {% endfor %}
 </div>
 {% endblock content %}

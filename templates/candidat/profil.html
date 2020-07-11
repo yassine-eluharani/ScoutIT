@@ -12,12 +12,12 @@
   <div class="resume">
     <div class="resume_left">
       <div class="resume_profile">
-        <img src="{% static 'images/user.png' %}" alt="profile_pic">
+        <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
       </div>
       <div class="resume_content">
         <div class="resume_item resume_info">
           <div class="title">
-            <a class="btn btn-dark btn-block button-hover" href="{% url 'profil_personel' %}">Update</a>
+            <a class="btn btn-dark btn-block button-hover" href="{% url 'Updateprofil' %}">Update</a>
             <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
             <p class="regular">Specialité</p>
           </div>
