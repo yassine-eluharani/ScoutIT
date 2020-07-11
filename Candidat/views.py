@@ -33,9 +33,15 @@ def cv(request):
     }
     return render(request ,'candidat/profil.html',context)
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
 def profil(request):
-    
-    context={}
+    profil = request.user.profil
+    form = CreateProfil(instance=profil)
+    context={
+        'form':form
+    }
     return render(request,'candidat/profil-personel.html',context)
 
 
