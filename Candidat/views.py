@@ -35,7 +35,6 @@ def cv(request):
 
 
 def profil(request):
-
     return render(request,'candidat/profil-personel.html')
 
 @login_required(login_url='login')

@@ -18,7 +18,7 @@ class Profil(models.Model):
         ('Divorced','Divorced'),
     )
     user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
-    profil_pic = models.ImageField(default='user.png' ,null=True, blank=True)
+    profil_pic = models.ImageField(null=True, blank=True)
     nom = models.CharField(max_length=20 ,null=True)
     prenom = models.CharField(max_length=20 ,null=True)
     date_n = models.DateField(null=True)

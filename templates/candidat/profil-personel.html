@@ -10,7 +10,12 @@
                 <div class="col-md-4">
                     <div class="profile-img">
                         <div class="row ml-5">
-                            <img src="{{ request.user.profil.profil_pic.url }}" alt="" />                        
+                        {% if request.user.profil.profil_pic.url is not None %}
+                            <img src="{{ request.user.profil.profil_pic.url }}" alt="" />
+                        {% else %}
+                            <img src="{% static 'images/user.png' %}" alt="" />
+                        {% endif %}
+                                                  
                         </div>                                                
                     </div>
                 </div>
