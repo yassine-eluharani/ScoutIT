@@ -114,7 +114,16 @@ def logoutUser(request):
 @allowed_users(allowed_roles=['Candidat'])
 def createProjet(request):
     
-    ProjetFormSet = inlineformset_factory(Profil , Projet_realise , fields=('annee_projet','description_projet') ,extra=2)
+    ProjetFormSet = inlineformset_factory(Profil,
+    Projet_realise,
+    fields=('annee_projet','description_projet'),
+    extra=1,
+    can_delete=False,
+    widgets={
+        'annee_projet' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Year of project'}),
+        'description_projet' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+    }
+    )
     profil = request.user.profil
     formset = ProjetFormSet(instance=profil)    
     if request.method == 'POST':        
@@ -136,10 +145,7 @@ def deleteProjet(request ,pk):
     if request.method == 'POST':
         project.delete()
         return redirect("profil")
-    context = {
-        'item':project
-    }
-    return render(request,'form/delete.html',context)
+    
 
 
 #Experience_Pro
@@ -147,7 +153,17 @@ def deleteProjet(request ,pk):
 @allowed_users(allowed_roles=['Candidat'])
 def createExperience_pro(request):
     
-    ProjetFormSet = inlineformset_factory(Profil , Experience_Pro , fields=('annee_debut' ,'annee_fin' ,'description_exp_pro') ,extra=2)
+    ProjetFormSet = inlineformset_factory(Profil,
+    Experience_Pro,
+    fields=('annee_debut' ,'annee_fin' ,'description_exp_pro'),
+    extra=1,
+    can_delete=False,
+    widgets={
+        'annee_debut' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Start'}),
+        'annee_fin' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'End'}),
+        'description_exp_pro' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+    }
+    )
     profil = request.user.profil
     formset = ProjetFormSet(instance=profil)    
     if request.method == 'POST':
@@ -168,10 +184,7 @@ def deleteExperience_pro(request ,pk):
     if request.method == 'POST':
         exp_pro.delete()
         return redirect("profil")
-    context = {
-        'item':exp_pro
-    }
-    return render(request,'form/delete.html',context)
+    
 
 
 #Academic
@@ -179,7 +192,19 @@ def deleteExperience_pro(request ,pk):
 @allowed_users(allowed_roles=['Candidat'])
 def createAcademic(request):
     
-    ProjetFormSet = inlineformset_factory(Profil , Academic , fields=('annee_debut','annee_fin' ,'type_diplome','description_academic','ecole') ,extra=2)
+    ProjetFormSet = inlineformset_factory(Profil,
+    Academic,
+    fields=('annee_debut','annee_fin' ,'type_diplome','description_academic','ecole'),
+    extra=1,
+    can_delete=False,
+    widgets={
+        'annee_debut' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Start'}),
+        'annee_fin' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'End'}),
+        'type_diplome' : forms.Select(attrs={'class':'form-control', 'placeholder':'EZEZ'}),
+        'description_academic' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
+        'ecole' : forms.Select(attrs={'class':'form-control', 'placeholder':'EZEZ'}),
+    }
+    )
     profil = request.user.profil
     formset = ProjetFormSet(instance=profil)    
     if request.method == 'POST':
@@ -200,11 +225,7 @@ def deleteAcademic(request ,pk):
     academic = Academic.objects.get(id=pk)
     if request.method == 'POST':
         academic.delete()
-        return redirect("profil")
-    context = {
-        'item': academic
-    }
-    return render(request,'form/delete.html',context)
+        return redirect("profil")   
 
 
 #Certificat
@@ -212,7 +233,17 @@ def deleteAcademic(request ,pk):
 @allowed_users(allowed_roles=['Candidat'])
 def createCertificat(request):
     
-    ProjetFormSet = inlineformset_factory(Profil , Certificat , fields=('accreditation','titre_cert','date_cert') ,extra=2)
+    ProjetFormSet = inlineformset_factory(Profil,
+    Certificat,
+    fields=('accreditation','titre_cert','date_cert'),
+    extra=1,
+    can_delete=False,
+    widgets={
+        'date_cert' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Issued in'}),
+        'titre_cert' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Certification'}),
+        'accreditation' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Credential ID'}),
+    }
+    )
     profil = request.user.profil
     formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
     if request.method == 'POST':
@@ -234,10 +265,7 @@ def deleteCertificat(request ,pk):
     if request.method == 'POST':
         certificat.delete()
         return redirect("profil")
-    context = {
-        'item':certificat
-    }
-    return render(request,'form/delete.html',context)
+    
 
 
 #Language
@@ -245,7 +273,16 @@ def deleteCertificat(request ,pk):
 @allowed_users(allowed_roles=['Candidat'])
 def createLanguage(request):
     
-    ProjetFormSet = inlineformset_factory(Profil , Language , fields=('langue','level') ,extra=2)
+    ProjetFormSet = inlineformset_factory(Profil,
+    Language,
+    fields=('langue','level'),
+    extra=1,
+    can_delete=False,
+    widgets={
+        'langue' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Language'}),
+        'level' : forms.Select(attrs={'class':'form-control', 'placeholder':'Level'}),        
+    }
+    )
     profil = request.user.profil
     formset = ProjetFormSet(queryset=Projet_realise.objects.none() ,instance=profil)    
     if request.method == 'POST':
@@ -267,10 +304,7 @@ def deleteLanguage(request ,pk):
     if request.method == 'POST':
         langue.delete()
         return redirect("profil")
-    context = {
-        'item':langue
-    }
-    return render(request,'form/delete.html',context)
+    
     
 
 

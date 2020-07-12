@@ -2,265 +2,315 @@
 {% load static %}
 
 {% block style %}
-  <link rel="stylesheet" href="{% static 'css/profil.css' %}">
+<link rel="stylesheet" href="{% static 'css/profil.css' %}">
 {% endblock %}
 
 {% block content %}
-  
-  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
-  <div class="resume">
-    <div class="resume_left">
-      <div class="resume_profile">
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+<div class="resume">
+  <div class="resume_left">
+    <div class="resume_profile">
       {% if request.user.profil.profil_pic.url is not None %}
-        <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
+      <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
       {% else %}
-        <img src="{% static 'images/user.png' %}" alt="profile_pic">
+      <img src="{% static 'images/user.png' %}" alt="profile_pic">
       {% endif %}
-        
-      </div>
-      <div class="resume_content">
-        <div class="resume_item resume_info">
-          <div class="title">
-            <a class="btn btn-dark btn-block button-hover" href="{% url 'Updateprofil' %}">Update</a>
-            <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
-            <p class="regular">Specialité</p>
-          </div>
-          <ul>
-            <li>
-              <div class="icon">
-                <i class="fas fa-map-signs"></i>
-              </div>
-              <div class="data">
-                {{ request.user.profil.adresse }} <br /> {{ request.user.profil.pays }}
-              </div>
-            </li>
-            <li>
-              <div class="icon">
-                <i class="fas fa-mobile-alt"></i>
-              </div>
-              <div class="data">
-                {{ request.user.profil.telephone }}
-              </div>
-            </li>
-            <li>
-              <div class="icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="data">
-                {{ request.user.email }}
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="resume_item resume_skills">
-          <div class="title">
-            <p class="bold">skills</p>
-          </div>
-          <ul>
-            <li>
-              <div class="skill_name">
-                skill 1
-              </div>
-              <div class="skill_progress">
-                <span style="width: 80%;"></span>
-              </div>
-              <div class="skill_per">%</div>
-            </li>
-            <li>
-              <div class="skill_name">
-                Skill2
-              </div>
-              <div class="skill_progress">
-                <span style="width: 70%;"></span>
-              </div>
-              <div class="skill_per">%</div>
-            </li>
-            <li>
-              <div class="skill_name">
-                skill3
-              </div>
-              <div class="skill_progress">
-                <span style="width: 90%;"></span>
-              </div>
-              <div class="skill_per">%</div>
-            </li>
-          </ul>
-        </div>
-        <div class="resume_item resume_social">
-          <div class="title">
-            <p class="bold">Social</p>
-          </div>
-          <ul>
-            <li>
-              <div class="icon">
-                <i class="fab fa-facebook-square"></i>
-              </div>
-              <div class="data">
-                <p class="semi-bold">Facebook</p>
-                <p>facebook</p>
-              </div>
-            </li>
-            <li>
-              <div class="icon">
-                <i class="fab fa-twitter-square"></i>
-              </div>
-              <div class="data">
-                <p class="semi-bold">Twitter</p>
-                <p>twitter</p>
-              </div>
-            </li>
-            <li>
-              <div class="icon">
-                <i class="fab fa-youtube"></i>
-              </div>
-              <div class="data">
-                <p class="semi-bold">Youtube</p>
-                <p>youtube</p>
-              </div>
-            </li>
-            <li>
-              <div class="icon">
-                <i class="fab fa-linkedin"></i>
-              </div>
-              <div class="data">
-                <p class="semi-bold">Linkedin</p>
-                <p>{{ request.user.profil.linkdin }}</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="resume_right">
-
-      <div class="resume_item resume_education">
-        <div class="title">
-          <p class="bold">Education</p>
-        </div>
-        <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Education</a>
-          <br>
-        </div>
-        <ul>
-          {% for academic in academics %}
-          <li>
-            <div class="date">{{ academic.annee_debut }} - {{ academic.annee_fin }}</div>
-            <div class="info">
-              <p class="semi-bold">{{ academic.type_diplome }} A {{ academic.ecole }}</p>
-              <p>{{ academic.description_academic }}</p>
-            </div>
-            <div>
-              <td><a class="btn btn-danger " href="{% url 'delete_academic' academic.id %}">Delete</a></td>
-            </div>
-            <br>
-
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="resume_item resume_work">
-        <div class="title">
-          <p class="bold">Work Experience</p>
-        </div>
-        <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update
-            Work Experience</a>
-          <br>
-        </div>
-        <ul>
-          {% for exp_pro in exp_pros %}
-          <li>
-            <div class="date">{{ exp_pro.annee_debut }} - {{ exp_pro.annee_fin }}</div>
-            <div class="info">
-              <p>{{ exp_pro.description_exp_pro }}</p>
-            </div>
-            <div>
-              <a class="btn btn-danger" href="{% url 'delete_experience_pro' exp_pro.id %}">Delete</a>
-            </div>
-            <br>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="resume_item resume_work">
-        <div class="title">
-          <p class="bold">Projects </p>
-        </div>
-        <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projects</a>
-          <br>
-        </div>
-        <ul>
-          {% for projet in projets %}
-          <li>
-            <div class="date">{{ projet.annee_projet }}</div>
-            <div class="info">
-              <p>{{ projet.description_projet }}</p>
-            </div>
-            <div>
-              <a class="btn btn-danger" href="{% url 'delete_projet' projet.id %}">Delete</a>
-            </div>
-            <br>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="resume_item resume_work">
-        <div class="title">
-          <p class="bold">Certificate</p>
-        </div>
-        <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update
-            Certificate</a>
-          <br>
-        </div>
-        <ul>
-          {% for certificat in certificats %}
-          <li>
-            <div class="date">{{ certificat.date_cert }}</div>
-            <div class="info">
-              <p>Certificate : {{ certificat.titre_cert }}</p>
-              <p>Accreditation : {{ certificat.accreditation }}</p>
-            </div>
-            <div>
-              <a class="btn btn-danger" href="{% url 'delete_certificat' certificat.id %}">Delete</a>
-            </div>
-            <br>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="resume_item resume_Langue">        
-        <p class="bold">Languages</p>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Language</a>
-        <table class="table">
-          <tr>
-            <th>Language</th>
-            <th>Level</th>
-          </tr>
-          {% for langue in langues %}
-
-          <tr>
-            <td>{{ langue.langue }}</td>
-            <td>{{ langue.level }}</td>
-            <td><a class="btn btn-danger float-right" href="{% url 'delete_language' langue.id %}">Delete</a></td>
-          </tr>
-
-          {% endfor %}
-
-        </table>
-      </div>
-
 
     </div>
+    <div class="resume_content">
+      <div class="resume_item resume_info">
+        <div class="title">
+          <a class="btn btn-dark btn-block button-hover" href="{% url 'Updateprofil' %}">Update</a>
+          <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
+          <p class="regular">Specialité</p>
+        </div>
+        <ul>
+          <li>
+            <div class="icon">
+              <i class="fas fa-map-signs"></i>
+            </div>
+            <div class="data">
+              {{ request.user.profil.adresse }} <br /> {{ request.user.profil.pays }}
+            </div>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="data">
+              {{ request.user.profil.telephone }}
+            </div>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="data">
+              {{ request.user.email }}
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="resume_item resume_skills">
+        <div class="title">
+          <p class="bold">skills</p>
+        </div>
+        <ul>
+          <li>
+            <div class="skill_name">
+              skill 1
+            </div>
+            <div class="skill_progress">
+              <span style="width: 80%;"></span>
+            </div>
+            <div class="skill_per">%</div>
+          </li>
+          <li>
+            <div class="skill_name">
+              Skill2
+            </div>
+            <div class="skill_progress">
+              <span style="width: 70%;"></span>
+            </div>
+            <div class="skill_per">%</div>
+          </li>
+          <li>
+            <div class="skill_name">
+              skill3
+            </div>
+            <div class="skill_progress">
+              <span style="width: 90%;"></span>
+            </div>
+            <div class="skill_per">%</div>
+          </li>
+        </ul>
+      </div>
+      <div class="resume_item resume_social">
+        <div class="title">
+          <p class="bold">Social</p>
+        </div>
+        <ul>
+          <li>
+            <div class="icon">
+              <i class="fab fa-facebook-square"></i>
+            </div>
+            <div class="data">
+              <p class="semi-bold">Facebook</p>
+              <p>facebook</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fab fa-twitter-square"></i>
+            </div>
+            <div class="data">
+              <p class="semi-bold">Twitter</p>
+              <p>twitter</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fab fa-youtube"></i>
+            </div>
+            <div class="data">
+              <p class="semi-bold">Youtube</p>
+              <p>youtube</p>
+            </div>
+          </li>
+          <li>
+            <div class="icon">
+              <i class="fab fa-linkedin"></i>
+            </div>
+            <div class="data">
+              <p class="semi-bold">Linkedin</p>
+              <p>{{ request.user.profil.linkdin }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <div class="resume_right">
 
+    <div class="resume_item resume_education">
+      <div class="title">
+        <p class="bold">Education</p>
+      </div>
+      <div>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update Education</a>
+        <br>
+      </div>
+      <ul>
+        {% for academic in academics %}
+        <li>
+          <div class="date">{{ academic.annee_debut }} - {{ academic.annee_fin }}</div>
+          <div class="info">
+            <p class="semi-bold">{{ academic.type_diplome }} From <b>{{ academic.ecole }}</b></p>
+            <div class="row">
+              <div class="col-10">
+                {{ academic.description_academic }}
+              </div>
+              <div class="col-2">
+                <form method="POST" action="{% url 'delete_academic' academic.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-danger btn-block" type="submit" name="delete">
+                    <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="resume_item resume_work">
+      <div class="title">
+        <p class="bold">Work Experience</p>
+      </div>
+      <div>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update
+          Work Experience</a>
+        <br>
+      </div>
+      <ul>
+        {% for exp_pro in exp_pros %}
+        <li>
+          <div class="date">{{ exp_pro.annee_debut }} - {{ exp_pro.annee_fin }}</div>
+          <div class="info">
+            <div class="row">
+              <div class="col-10">
+                {{ exp_pro.description_exp_pro }}
+              </div>
+              <div class="col-2">
+                <form method="POST" action="{% url 'delete_experience_pro' exp_pro.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-danger btn-block" type="submit" name="delete">
+                    <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="resume_item resume_work">
+      <div class="title">
+        <p class="bold">Projects </p>
+      </div>
+      <div>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projects</a>
+        <br>
+      </div>
+      <ul>
+        {% for projet in projets %}
+        <li>
+          <div class="date">{{ projet.annee_projet }}</div>
+          <div class="info">
+            <div class="row">
+              <div class="col-10">
+                {{ projet.description_projet }}
+              </div>
+              <div class="col-2">
+                <form method="POST" action="{% url 'delete_projet' projet.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-danger btn-block" type="submit" name="delete">
+                    <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="resume_item resume_work">
+      <div class="title">
+        <p class="bold">Certificate</p>
+      </div>
+      <div>
+        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update
+          Certificate</a>
+        <br>
+      </div>
+      <ul>
+        {% for certificat in certificats %}
+        <li>
+          <div class="date">{{ certificat.date_cert }}</div>
+          <div class="info">
+            <div class="row">
+              <div class="col-10">
+                Certificate in: <b>{{ certificat.titre_cert }}</b> <br> Credential ID:
+                <b>{{ certificat.accreditation }}</b>
+              </div>
+              <div class="col-2">
+                <form method="POST" action="{% url 'delete_certificat' certificat.id %}">
+                  {% csrf_token %}
+                  <button class="btn btn-danger btn-block" type="submit" name="delete">
+                    <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="resume_item resume_Langue">
+      <p class="bold">Languages</p>
+      <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Language</a>
+      <div class="row mt-3">
+        <div class="col-5">
+          <b>
+            <p>Language</p>
+          </b>
+        </div>
+
+        <div class="col-5">
+          <b>
+            <p>Level</p>
+          </b>
+        </div>
+      </div>
+      <hr>
+      {% for langue in langues %}
+      <div class="row mt-2">
+        <div class="col-5">
+          {{ langue.langue }}
+        </div>
+        <div class="col-5">
+          {{ langue.level }}
+        </div>
+        <div class="col-2">
+          <form method="POST" action="{% url 'delete_language' langue.id %}">
+            {% csrf_token %}
+            <button class="btn btn-danger btn-block" type="submit" name="delete">
+              <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+            </button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
-  </div>
+</div>
+
+</div>
+</div>
 
 
 

@@ -43,6 +43,7 @@ class Ecole(models.Model):
 
 class Academic(models.Model):
     TYPE = (
+        ('', '(Degree)'),
         ('CPGE/BTS/DEUG/...','CPGE/BTS/DEUG/...'),
         ('Licence','Licence '),
         ('Master','Master'),
@@ -85,6 +86,7 @@ class Certificat(models.Model):
 
 class Language(models.Model):
     lvl = (
+        ('', '(Level)'),
         ('A1','découverte'),
         ('A2','usuel'),
         ('B1','niveau seuil'),
