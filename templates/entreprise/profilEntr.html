@@ -2,26 +2,55 @@
 {% load static %}
 
 {% block style %}
-    <link rel="stylesheet" href="{% static 'css/profilEntr.css' %}">
+<link rel="stylesheet" href="{% static 'css/profilEntr.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
+        <!-- <div class="card-deck"> -->
             {% for offre in offres %}
-                <div class="col-lg-4 col-sm-12 mt-4 shadow-lg border border-secandary rounded mycol">
-                    
-                    <p>{{ offre.poste }}</p>
-                    <p>{{ offre.diplome }}</p>
-                    <p>{{ offre.experience }}</p>
-                    <p>{{ offre.description }}</p>
-                    
-                </div>            
-            {% endfor %}
-        </div>
-        <div class="row p-3">         
-            <a class="btn btn-dark btn-block button-hover" href="{% url 'add_offer' %}">Post a job offer</a>
-		</div>
+                <div class="col-lg-4 col-sm-12">
+                    <div class="card mt-5 shadow-lg border border-secondary rounded">
+                        <div class="card-body ">
 
+                            <h5>Position applied for:</h5>
+                            <p>{{ offre.poste }}</p>
+                            <h5>Degree:</h5>
+                            <p>{{ offre.diplome }}</p>
+                            <h5>Experience:</h5>
+                            <p>{{ offre.experience }}</p>
+                            <h5>Discription:</h5>
+                            <p>{{ offre.description }}</p>
+
+                            <div class="row mt-5">
+                                <div class="col-9">
+                                    <a class="btn btn-dark btn-block button-hover font-weight-bold" href="{% url 'add_offer' %}">Scout</a>
+                                </div>
+                                <div class="col-3">
+                                    <form method="POST" action="{% url 'delete_offre' offre.id %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger btn-block" type="submit" name="delete" >
+                                            <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
+                                        </button>                                        
+                                     </form>                                
+                                </div>                                
+                            </div>                           
+                        </div>
+                    </div>
+
+
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
+            {% endfor %}
+        <!-- </div> -->
     </div>
+    <div class="row p-3">
+        <a class="btn btn-dark btn-block button-hover" href="{% url 'add_offer' %}">Post a job offer</a>
+    </div>
+
+</div>
 {% endblock %}

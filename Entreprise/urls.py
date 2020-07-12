@@ -8,4 +8,6 @@ urlpatterns = [
     path('profilEntr/', profilEntr, name='profilEntr'),
     path('registerEntr/', registerEntr, name='registerEntr'),
     path('add_offer/', AddOffer, name="add_offer"),
+    path('delete_offre/<str:pk>/', deleteOffre, name="delete_offre"),
+
 ]

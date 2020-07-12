@@ -23,6 +23,8 @@ def profilEntr(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])
 def AddOffer(request):    
+
+
     entreprise = request.user.profilentreprise        
     form = AddOfferForm(initial={'entreprise' : entreprise})
     if request.method == 'POST':            
@@ -34,6 +36,20 @@ def AddOffer(request):
         'form' : form
     }
     return render(request,'form/add-formEntr.html',context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Entreprise'])
+def deleteOffre(request ,pk):
+    offre = Offre.objects.get(id=pk)
+    if request.method == 'POST':
+        offre.delete()
+        return redirect("profilEntr")
+    context = {
+        'item':offre
+    }
+    return render(request,'form/delete.html',context)
+
 
 
 @unauthenticated_user
