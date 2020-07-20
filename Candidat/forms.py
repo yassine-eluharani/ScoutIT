@@ -5,10 +5,6 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-class Projet_realiseForm(ModelForm):
-    class Meta:
-        model = Projet_realise
-        fields = '__all__'
 
 class CreateUserForm(UserCreationForm):
     password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
@@ -22,7 +18,6 @@ class CreateUserForm(UserCreationForm):
             'email' : forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}),           
         }
 
-
 class EmailUsenameUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -31,9 +26,6 @@ class EmailUsenameUpdateForm(forms.ModelForm):
             'username' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Username'}),
             'email' : forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Email'}),           
         }
-
-
-
 
 class DateInput(forms.DateInput):
     input_type = 'date'

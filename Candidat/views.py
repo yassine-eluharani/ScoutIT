@@ -304,6 +304,40 @@ def deleteLanguage(request ,pk):
     if request.method == 'POST':
         langue.delete()
         return redirect("profil")
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Candidat'])
+def personalite(request):
+    questions= Question.objects.all()
+    profil = request.user.profil
+    if request.method == 'POST':
+        try:
+            reponse = ScorePersonalite.objects.create(Profil=profil)
+            allRep = []
+            allRep = request.POST.getlist('poll')
+            for Rep in allRep:                
+                if Rep == 'openness':
+                    reponse.ScoreOp +=  1
+
+                elif Rep == 'conscientiousness':
+                    reponse.ScoreCon += 1
+
+                elif Rep == 'extraversion':
+                    reponse.ScoreExt += 1
+
+                elif Rep == 'agreeableness':
+                    reponse.ScoreAgr += 1
+
+                elif Rep == 'neuroticism':
+                    reponse.ScoreNeu += 1                                            
+            reponse.save()      
+        except:
+            return redirect("profil")
+    context={
+        'questions':questions
+    }
+    return render(request , 'candidat/personalite.html' , context)
     
     
 

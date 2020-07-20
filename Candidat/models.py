@@ -100,4 +100,23 @@ class Language(models.Model):
 
     def __str__(self):
         return  self.langue + " " + self.level + " " + self.profil.nom
+
+class Question(models.Model):
+
+    Question = models.CharField(max_length=100,blank=True)
+    openness = models.CharField(max_length=150,blank=True)
+    conscientiousness = models.CharField(max_length=150,blank=True)
+    extraversion = models.CharField(max_length=150,blank=True)
+    agreeableness = models.CharField(max_length=150,blank=True)
+    neuroticism = models.CharField(max_length=150,blank=True)
     
+    def __str__(self):
+        return self.Question
+
+class ScorePersonalite(models.Model):
+    ScoreOp = models.IntegerField(blank=True,default=0)
+    ScoreCon = models.IntegerField(blank=True,default=0)
+    ScoreExt = models.IntegerField(blank=True,default=0)
+    ScoreAgr = models.IntegerField(blank=True,default=0)
+    ScoreNeu = models.IntegerField(blank=True,default=0)
+    Profil = models.OneToOneField("Profil", on_delete=models.CASCADE,null=True)

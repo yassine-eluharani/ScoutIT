@@ -12,6 +12,8 @@ urlpatterns = [
     path('Updateprofil/',views.updateProfil,name="Updateprofil"),
     path('profil/',views.profil,name="profil_personel"),
 
+    path('personalite/',views.personalite,name='personalite'),
+
 
     
     #Academic Paths
