@@ -38,13 +38,19 @@ def cv(request):
 
 
 def profil(request):
-    return render(request,'candidat/profil-personel.html')
+    profil = request.user.profil    
+    score = ScorePersonalite.objects.get(Profil=profil)
+    context = {
+       'score' : score 
+    }
+    return render(request,'candidat/profil-personel.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
 def updateProfil(request):
     profil = request.user.profil
     user = request.user
+    score = ScorePersonalite.objects.get(Profil=profil)
     formUser = EmailUsenameUpdateForm(instance=user)
     form = CreateProfil(instance=profil)
     if request.method == 'POST':        
@@ -55,10 +61,10 @@ def updateProfil(request):
             form.save()        
     context={
         'form':form,
-        'formUser' :formUser
+        'formUser' :formUser,
+        'score' : score
     }
     return render(request,'candidat/update-profil-personel.html',context)
-
 
 
 #Registartion
@@ -91,7 +97,7 @@ def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password') 
-        user = authenticate(request,username = username , password=password)  
+        user = authenticate(request,username = username , password=password)
         if user is not None:
             login(request,user)
             group = None
@@ -109,7 +115,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('index')
+    return redirect('login')
 
 
 #Projet_realise
@@ -309,6 +315,7 @@ def deleteLanguage(request ,pk):
         return redirect("profil")
 
 
+#Personality
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
 def personalite(request):
