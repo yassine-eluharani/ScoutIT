@@ -1,44 +1,113 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block style %}
-{% endblock %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/testcss.css' %}">
+{% endblock  %}
+
+
 
 {% block content %}
-    <form method="POST">
-        {% for question in questions %}
-            <div class="container">
-                {% csrf_token %}
-                <h3>{{ question.Question }}</h3>
+  <section class="preloader">
+  <div class="sk-circle">
+       <div class="sk-circle1 sk-child"></div>
+       <div class="sk-circle2 sk-child"></div>
+       <div class="sk-circle3 sk-child"></div>
+       <div class="sk-circle4 sk-child"></div>
+       <div class="sk-circle5 sk-child"></div>
+       <div class="sk-circle6 sk-child"></div>
+       <div class="sk-circle7 sk-child"></div>
+       <div class="sk-circle8 sk-child"></div>
+       <div class="sk-circle9 sk-child"></div>
+       <div class="sk-circle10 sk-child"></div>
+       <div class="sk-circle11 sk-child"></div>
+       <div class="sk-circle12 sk-child"></div>
+     </div>
+</section>
 
-                <p>
-                    <input type="checkbox" name="poll" value="openness">
-                    {{ question.openness }}
-                </p>
+<div class="pr1">
+<section id="home">
+  <div class="container">
+    <div class="row">
 
-                <p>
-                    <input type="checkbox" name="poll" value="conscientiousness">
-                    {{ question.conscientiousness }}
-                </p>
+      <div class="col-md-offset-2 col-md-8 col-sm-12">
+        <div class="home-thumb">
+          <h1 class="wow fadeInUp" data-wow-delay="0.4s"><strong>Scout</strong><strong style="color: black;">cv</strong>: Personality Test</h1>
+                <h3 class="wow fadeInUp" data-wow-delay="0.6s">Take a <strong>fast</strong>, <strong>Accurate</strong> and <strong>free</strong> personality test!</h3>
+                 <a href="{% url 'profil' %}" data-toggle="modal" data-target="#modal1" class="btn btn-lg btn-success smoothScroll wow fadeInUp" data-wow-delay="1.0s"> <span> Go back to your profile </span></a>
+            <a href="#quiz" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs" data-wow-delay="0.8s"> <div>Let's begin!</div></a>
 
-                <p>
-                    <input type="checkbox" name="poll" value="extraversion">
-                    {{ question.extraversion }}
-                </p>
-
-                <p>
-                    <input type="checkbox" name="poll" value="agreeableness">
-                    {{ question.agreeableness }}
-                </p>
-
-                <p>
-                    <input type="checkbox" name="poll" value="neuroticism">
-                    {{ question.neuroticism }}                    
-                </p>
-                    
-                <hr>
-                
             </div>
-        {% endfor %}
-        <input type="submit" value="submit">
-    </form>
-{% endblock %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+<div class="pr2 wow fadeInUp" id="quiz" data-wow-delay="0.4s">
+<section>
+    <div class="container ">
+
+  <h2 style="color: black">Start your quiz! </h2>
+  <form method="POST">
+    {% csrf_token %}
+      {% for question in questions %}
+        <h4>{{ question.Question }}:</h4>
+        <div class="form-check">
+          <label class="form-check-label" for="radio1">
+            <input type="checkbox" name="poll" value="openness">
+              {{ question.openness }}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="radio2">
+            <input type="checkbox" name="poll" value="conscientiousness">
+              {{ question.conscientiousness }}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="radio3">
+            <input type="checkbox" name="poll" value="extraversion">
+              {{ question.extraversion }}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="radio4">
+            <input type="checkbox" name="poll" value="agreeableness">
+              {{ question.agreeableness }}
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label" for="radio5">
+            <input type="checkbox" name="poll" value="neuroticism">
+              {{ question.neuroticism }}
+          </label>
+        </div>  
+    {% endfor %}
+    <button type="submit" class="btn btn-primary m-5">Submit</button>
+  </form>
+
+</div>
+</section>
+ <ul class="circles">
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+      </ul>
+  </div>
+</div>
+
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+
+{% endblock  %}
+

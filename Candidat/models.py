@@ -120,3 +120,6 @@ class ScorePersonalite(models.Model):
     ScoreAgr = models.IntegerField(blank=True,default=0)
     ScoreNeu = models.IntegerField(blank=True,default=0)
     Profil = models.OneToOneField("Profil", on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return 'Score Personalite ' + self.Profil.nom

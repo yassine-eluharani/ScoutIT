@@ -16,6 +16,9 @@ from .forms import *
 def index(request):
     return render(request,'index.html')
 
+def indexCandidat(request):
+    return render(request,'Candidat/startCandidat.html')
+
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
 def cv(request):
@@ -331,7 +334,8 @@ def personalite(request):
 
                 elif Rep == 'neuroticism':
                     reponse.ScoreNeu += 1                                            
-            reponse.save()      
+            reponse.save()
+            return redirect("profil")      
         except:
             return redirect("profil")
     context={
@@ -339,6 +343,8 @@ def personalite(request):
     }
     return render(request , 'candidat/personalite.html' , context)
     
+
+
     
 
 

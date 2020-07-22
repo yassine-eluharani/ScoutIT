@@ -1,58 +1,119 @@
-{% extends 'base.html' %}
 {% load static %}
 
-{% block style %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-{% endblock %}
+<html>
 
-{% block content %}
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href=" {% static 'css/animate.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vegas.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/cssf.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      // Add smooth scrolling to all links
+      $("a").on('click', function (event) {
+
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+
+          // Store hash
+          var hash = this.hash;
+
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 400, function () {
+
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+    });
+  </script>
+
+</head>
 
 <body>
 
-
-  <div class="hero">
-    <div class="split left">
-      <div class="centered">
-        <img src='{% static "images/entr.jpg" %}' alt="Avatar Company">
-        <h2>Espace Entreprise</h2>
-      </div>
+  <section class="preloader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
     </div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
+  </section>
 
-  </div>
 
-  <div class="hero2">
-    <div class="split right">
-      <div class="centered">
-        <img class="image" src='{% static "images/clit.png" %}' alt="Avatar Client">
+  <div class="main" id="home">
 
-        <div class="middle">
 
-          <div class="btn-group">        
-            <button><a href="{% url 'login' %}">Login</a></button>            
-            <button><a href="{% url 'register' %}">Register</a></button>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-offset-2 col-md-8 col-sm-12">
+          <div class="home-thumb">
+            <h1 class="wow fadeInUp" data-wow-delay="0.4s">WELCOME TO </h1> <img class="wow fadeInUp"
+              data-wow-delay="0.5s" src="{% static 'images/ScouCV.png' %}" />
+            <h3 class="wow fadeInUp" data-wow-delay="0.6s"><strong>Digitalising</strong> your
+              <strong>employment</strong> process!</h3>
+            <h3 class="wow fadeInUp" data-wow-delay="0.8s"><strong>Easy, Fast</strong> and <strong>Free!</strong></h3>
+            <a href="#section2" class="btn btn-lg btn-default smoothScroll wow fadeInUp hidden-xs"
+              data-wow-delay="1s">Let's begin</a>
+
           </div>
         </div>
 
-
-        <h2>Espace Candidat</h2>
       </div>
-
-
     </div>
-    <div class="cube2"></div>
-    <div class="cube2"></div>
-    <div class="cube2"></div>
-    <div class="cube2"></div>
-    <div class="cube2"></div>
-    <div class="cube2"></div>
-
   </div>
 
+  <div class="main" id="section2">
+
+    <section class="xop-container">
+
+
+      <div class="xop-left">
+        <article>
+          <h1>Employers Section</h1><a href="{% url 'indexEntreprise' %}" class="xop-button">Scout For Profiles Now!</a>
+        </article>
+
+      </div>
+      <div class="xop-right">
+        <article>
+          <h1>Candidats Section</h1><a href="{% url 'indexCandidat' %}" class="xop-button">Make Your Profile Now!</a>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+  <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+  <!-- javscript js -->
+  <script src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/wow.min.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
 </body>
-{% endblock %}
+
+</html>

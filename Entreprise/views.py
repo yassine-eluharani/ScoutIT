@@ -75,3 +75,14 @@ def registerEntr(request):
         'profil_form' :profil_form
     }
     return render(request ,'registration/registerEntr.html',context)
+
+
+def about(request):
+    return render(request,'about.html')
+
+def contact(request):
+    return render(request,'contact.html')
+
+
+def indexEntreprise(request):
+    return render(request,'Entreprise/startEntreprise.html')
