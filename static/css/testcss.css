@@ -8,6 +8,10 @@ body {
   outline: none;
 }
 
+.formStyle{
+  font-size: 20px;
+}
+
 
  /***********----------------BACKGROUNDS WITHOUT FLYING TOBAT D SOKKAR---------------------------------------*/
 .pr1:not #home{

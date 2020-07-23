@@ -8,7 +8,13 @@ body {
   outline: none;
   
 }
-	
+  
+#home .home-thumb {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding : 10px;
+}
+
  /***********----------------BACKGROUNDS WITHOUT FLYING TOBAT D SOKKAR---------------------------------------*/
 .pr1:not #home{
   opacity:0.65;

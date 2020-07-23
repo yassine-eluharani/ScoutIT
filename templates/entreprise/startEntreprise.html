@@ -30,7 +30,8 @@
  
 
 
-<div class="pr1">     
+<div class="pr1">  
+{% include 'nav-bar.html' %}   
   
 <section id="home">
   <div class="container">
@@ -59,8 +60,7 @@
     <div class="row">
       <div class="col-md-6 col-sm-12" id="bruh">
       <img src="{% static 'images/com.png' %}" class="img-responsive wow fadeInUp" width="350px" height="250px" style="top:10%; position:relative;">
-      <img src="{% static 'images/mac.png' %}" class="img-responsive wow fadeInUp" width="300px" height="150px" style="position:absolute; top: 50%;
-  left: 250px;">
+      <img src="{% static 'images/mac.png' %}" class="img-responsive wow fadeInUp" width="300px" height="150px" style="position:absolute; top: 50%; left: 250px;">
       
         
       </div>
@@ -254,12 +254,13 @@
             </div>
         </div>
         </section>
+        {% include 'footer.html' %}
       </div>
 
 
 <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
 
-<script>
+{% comment %} <script>
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
@@ -270,7 +271,7 @@ var currentScrollPos = window.pageYOffset;
   }
   prevScrollpos = currentScrollPos;
 }
-</script>
+</script> {% endcomment %}
 {% endblock  %}
 
 

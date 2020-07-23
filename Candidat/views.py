@@ -108,7 +108,7 @@ def loginPage(request):
             if request.user.groups.exists():
                 group = request.user.groups.all()[0].name               
                 if group == 'Candidat':
-                    return redirect('Updateprofil')
+                    return redirect('profil')
                 else:
                     return redirect('profilEntr')
                     

@@ -18,9 +18,8 @@ class Poste(models.Model):
 
 class Offre(models.Model):
     TYPE = (
-        ('','(Select)'),
-        ('CPGE/BTS/DEUG/...','CPGE/BTS/DEUG/...'),
-        ('Licence','Licence '),
+        ('', '(Degree)'),
+        ('Bachelor','Bachelor '),
         ('Master','Master'),
         ('Doctorat','Doctorat'),
     )
