@@ -73,68 +73,9 @@
                {{ request.user.email }}
              </div>
            </li>
-           <li>
-             <div class="icon">
-               <i class="fab fa-weebly"></i>
-             </div>
-             <div class="data">
-               <p>{{ request.user.profil.linkdin }}</p>
-             </div>
-           </li>
+           
          </ul>
-       </div>
-       <div class="resume_item resume_skills">
-         <div class="title">
-           <p class="bold">skills</p>
-         </div>
-         <ul>
-           <li>
-             <div class="skill_name">
-               skill 1
-             </div>
-             <div class="skill_progress">
-               <span style="width: 80%;"></span>
-             </div>
-             <div class="skill_per">%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               Skill2
-             </div>
-             <div class="skill_progress">
-               <span style="width: 70%;"></span>
-             </div>
-             <div class="skill_per">%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               skill3
-             </div>
-             <div class="skill_progress">
-               <span style="width: 90%;"></span>
-             </div>
-             <div class="skill_per">%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               skill4
-             </div>
-             <div class="skill_progress">
-               <span style="width: 60%;"></span>
-             </div>
-             <div class="skill_per">%</div>
-           </li>
-           <li>
-             <div class="skill_name">
-               skill5
-             </div>
-             <div class="skill_progress">
-               <span style="width: 88%;"></span>
-             </div>
-             <div class="skill_per">%</div>
-           </li>
-         </ul>
-       </div>
+       </div>       
        <div class="resume_item resume_social">
          <div class="title">
            <p class="bold">Social</p>
@@ -146,7 +87,7 @@
              </div>
              <div class="data">
                <p class="semi-bold">Facebook</p>
-               <p>None</p>
+               <p>{{ request.user.profil.facebook }}</p>
              </div>
            </li>
            <li>
@@ -155,16 +96,7 @@
              </div>
              <div class="data">
                <p class="semi-bold">Twitter</p>
-               <p>None</p>
-             </div>
-           </li>
-           <li>
-             <div class="icon">
-               <i class="fab fa-youtube"></i>
-             </div>
-             <div class="data">
-               <p class="semi-bold">Youtube</p>
-               <p>None</p>
+               <p>{{ request.user.profil.twitter }}</p>
              </div>
            </li>
            <li>

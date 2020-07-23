@@ -16,7 +16,7 @@
         <div class="row mb-3">
             <div class="col text-center">
             {% if score is None %}
-                <a href="{% url 'personalite' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp centre" data-wow-delay="1.0s"> <span> Take a Personality quiz</span></a>
+                <a href="{% url 'personalite' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp centre" data-wow-delay="0.4s"> <span> Take a Personality quiz</span></a>
             {% endif %}
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             
 
-            <div class="col-md-6 mt-5">
+            <div class="col-md-8 mt-5">
                 <div class="profile-head">                
                         <div class="row">
                             <div class="col">
@@ -65,9 +65,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2  mt-5">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-            </div>
+            
         </div>
         <div class="row">
             <div class="col-md-4 ">
@@ -75,11 +73,10 @@
                 <p>Phone: {{ form.telephone }}</p>
                 <p>Email: {{ formUser.email }}</p>
                 <p>Adress: {{ form.adresse }}</p>
-
-
-                <a href="#" class="fa  fa-linkedin"></a>
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-twitter"></a>
+                <p>Linkdin: {{ form.linkdin }}</p>
+                <p>Facebook: {{ form.facebook }}</p>
+                <p>Twitter: {{ form.twitter }}</p>
+              
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
@@ -142,7 +139,7 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col">
-                                <input type="submit" class="btn btn-dark btn-block button-hover" name="UpdateProfil"
+                                <input type="submit" class="btn btn-dark btn-block button-hover mt-5" name="UpdateProfil"
                                     value="Update" />
                             </div>
                         </div>

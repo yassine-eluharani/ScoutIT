@@ -12,6 +12,11 @@ body {
   font-size: 20px;
 }
 
+#home .home-thumb {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  padding : 10px;
+}
 
  /***********----------------BACKGROUNDS WITHOUT FLYING TOBAT D SOKKAR---------------------------------------*/
 .pr1:not #home{
@@ -257,7 +262,7 @@ h1,h2,h3 {
   font-weight: 500;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
-  color:black;
+  color:white;
 
 }
 

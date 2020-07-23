@@ -38,8 +38,11 @@ def cv(request):
 
 
 def profil(request):
-    profil = request.user.profil    
-    score = ScorePersonalite.objects.get(Profil=profil)
+    profil = request.user.profil  
+    try:  
+        score = ScorePersonalite.objects.get(Profil=profil)
+    except:
+        score=None
     context = {
        'score' : score 
     }
@@ -53,8 +56,7 @@ def updateProfil(request):
     try:
         score = ScorePersonalite.objects.get(Profil=profil)
     except:
-        score = None
-    
+        score = None    
     formUser = EmailUsenameUpdateForm(instance=user)
     form = CreateProfil(instance=profil)
     if request.method == 'POST':        
@@ -108,7 +110,7 @@ def loginPage(request):
             if request.user.groups.exists():
                 group = request.user.groups.all()[0].name               
                 if group == 'Candidat':
-                    return redirect('profil')
+                    return redirect('Updateprofil')
                 else:
                     return redirect('profilEntr')
                     
@@ -207,7 +209,7 @@ def createAcademic(request):
     
     ProjetFormSet = inlineformset_factory(Profil,
     Academic,
-    fields=('annee_debut','annee_fin' ,'type_diplome','description_academic','ecole'),
+    fields=('annee_debut','annee_fin' ,'ecole','type_diplome','description_academic'),
     extra=1,
     can_delete=False,
     widgets={
@@ -215,7 +217,7 @@ def createAcademic(request):
         'annee_fin' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'End'}),
         'type_diplome' : forms.Select(attrs={'class':'form-control', 'placeholder':'EZEZ'}),
         'description_academic' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
-        'ecole' : forms.Select(attrs={'class':'form-control', 'placeholder':'EZEZ'}),
+        'ecole' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'School'}),
     }
     )
     profil = request.user.profil

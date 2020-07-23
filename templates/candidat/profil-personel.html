@@ -51,6 +51,9 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-md-2  mt-5">
+                    <a href="{% url 'Updateprofil' %}"  class="btn btn-dark btn-block button-hover">Edit Profile</a>
+                </div>
                            
         </div>
         <div class="row">
@@ -60,10 +63,23 @@
                     <p>Email: {{ request.user.email }}</p>
                     <p>Adress: {{ request.user.profil.adresse }}</p>
 
+                    {% if request.user.profil.linkdin is not None %}
+                        <a href="{{ request.user.profil.linkdin }}" class="fa  fa-linkedin"></a>
+                    {% else %}
+                        <a href="#" class="fa  fa-linkedin"></a>
+                    {% endif %}
 
-                    <a href="#" class="fa  fa-linkedin"></a>
-                    <a href="#" class="fa fa-facebook"></a>
-                    <a href="#" class="fa fa-twitter"></a>
+                    {% if request.user.profil.linkdin is not None %}
+                        <a href="{{ request.user.profil.twitter }}" class="fa fa-twitter"></a>
+                    {% else %}
+                        <a href="#" class="fa fa-twitter"></a>
+                    {% endif %}
+
+                    {% if request.user.profil.linkdin is not None %}
+                        <a href="{{ request.user.profil.facebook }}" class="fa fa-facebook"></a>
+                    {% else %}
+                        <a href="#" class="fa fa-facebook"></a>
+                    {% endif %}
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
