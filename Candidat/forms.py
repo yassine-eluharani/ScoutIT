@@ -35,7 +35,7 @@ class CreateProfil(forms.ModelForm):
     profil_pic = forms.ImageField(label=('Profile Picture'),required=False, error_messages = {'invalid':("Image files only")}, widget=forms.FileInput)
     class Meta:
         model= Profil
-        fields=['nom', 'prenom', 'date_n', 'sex', 'status', 'nationalite', 'pays', 'ville', 'telephone', 'adresse', 'linkdin' ,'profil_pic']        
+        fields=['nom', 'prenom', 'date_n', 'specialite', 'sex', 'status', 'nationalite', 'pays', 'ville', 'telephone', 'adresse', 'linkdin' ,'profil_pic']        
         widgets = {
             'nom' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'First Name'}),
             'prenom' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Last Name'}),  
@@ -44,7 +44,8 @@ class CreateProfil(forms.ModelForm):
             'status' : forms.Select(attrs={'class':'form-control', 'placeholder':'Status'}),  
             'nationalite' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nationality'}),  
             'pays' : forms.Select(attrs={'class':'form-control', 'placeholder':'County'}),           
-            'ville' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'City'}),           
+            'ville' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'City'}),
+            'specialite' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Speciality'}),           
             'telephone' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Phone number'}),           
             'adresse' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Address'}),           
             'linkdin' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Linkdin'}),           

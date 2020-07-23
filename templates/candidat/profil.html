@@ -46,7 +46,7 @@
        <div class="resume_item resume_info">
          <div class="title">
            <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
-          <p class="regular">Specialité</p>
+          
          </div>
          <ul>
            <li>
@@ -182,10 +182,18 @@
   </div>
   <div class="resume_right">
     <div class="resume_item resume_about">
-        <div class="title">
-           <p class="bold">About me</p>
-         </div>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis illo fugit officiis distinctio culpa officia totam atque exercitationem inventore repudiandae?</p>
+        <div class="row">
+          <div class="col-4 title">
+             <p class="bold">Speciality</p>
+            </div>
+            <div class="col-8">
+              <p class="font-weight-bold" style="font-size: 30px;">{{ request.user.profil.specialite }}</p>
+            </div>
+            
+          
+        </div>
+        
+        
     </div>
     <div class="resume_item resume_work">
         <div class="title">

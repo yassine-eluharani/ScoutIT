@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 class Profil(models.Model):
     SEX = (
         ('', '(Gender)'),
-        ('Homme','Male'),
-        ('Femme','Female'),
+        ('Male','Male'),
+        ('Female','Female'),
     )
     STATUS = (
         ('', '(Status)'),
@@ -17,7 +17,7 @@ class Profil(models.Model):
         ('Widowed','Widowed'),
         ('Divorced','Divorced'),
     )
-    user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null =True,on_delete=models.CASCADE , default="images/user.png")
     profil_pic = models.ImageField(null=True, blank=True)
     nom = models.CharField(max_length=20 ,null=True)
     prenom = models.CharField(max_length=20 ,null=True)
@@ -28,17 +28,14 @@ class Profil(models.Model):
     pays = CountryField(blank_label='(Country)' ,null=True)
     ville = models.CharField(max_length=20 ,null=True)
     telephone = models.CharField(max_length=20 ,null=True)
+    specialite = models.CharField(max_length=50 , null =True , blank=True)
     adresse = models.TextField(null=True,blank=True)
     linkdin = models.URLField(max_length=200,null=True,blank=True)
 
     def __str__(self):
         return self.nom + self.prenom
 
-class Ecole(models.Model):
-    nom_ecole = models.CharField(max_length=50 ,null=True)
-    classement = models.IntegerField(null=True)
-    def __str__(self):
-        return self.nom_ecole
+
     
 
 class Academic(models.Model):
@@ -51,9 +48,9 @@ class Academic(models.Model):
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)
     annee_debut = models.IntegerField(null=True)
     annee_fin = models.IntegerField(null=True)
+    ecole = models.CharField(max_length=50 ,null=True)
     type_diplome = models.CharField(max_length=20,choices=TYPE ,null=True)
     description_academic = models.TextField(null=True,blank=True)
-    ecole = models.ForeignKey('Ecole' , on_delete=models.DO_NOTHING ,null=True)
     def __str__(self):
         return self.description_academic + " de " + self.profil.nom
 

@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Profil,Experience_Pro,Academic,Ecole,Projet_realise,Certificat,Language,Question,ScorePersonalite
+from .models import Profil,Experience_Pro,Academic,Projet_realise,Certificat,Language,Question,ScorePersonalite
 
 # Register your models here.
-admin.site.register(Ecole)
 admin.site.register(Profil)
 admin.site.register(Academic)
 admin.site.register(Experience_Pro)

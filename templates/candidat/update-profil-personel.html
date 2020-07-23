@@ -15,7 +15,6 @@
         {% csrf_token %}
         <div class="row mb-3">
             <div class="col text-center">
-            {% comment %} {% if score.ScoreOp and score.ScoreCon and score.ScoreExt and score.ScoreAgr and score.ScoreNeu is None %} {% endcomment %}
             {% if score is None %}
                 <a href="{% url 'personalite' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp centre" data-wow-delay="1.0s"> <span> Take a Personality quiz</span></a>
             {% endif %}
@@ -39,8 +38,7 @@
             
 
             <div class="col-md-6 mt-5">
-                <div class="profile-head">
-                    <h5>                        
+                <div class="profile-head">                
                         <div class="row">
                             <div class="col">
                                 {{ form.nom }}
@@ -48,11 +46,14 @@
                             <div class="col">
                                 {{ form.prenom }}
                             </div>
+                        </div>                    
+                    <div class="row mt-4">
+                        <div class="col">
+                            {{ form.specialite }}
                         </div>
-                    </h5>
-                   
+                    </div>
 
-                    <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+                    <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
                                 aria-controls="home" aria-selected="true">Personal informations</a>
