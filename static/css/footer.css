@@ -1,4 +1,4 @@
-.footer {
+footer {
     background: rgba(0, 0, 0, 0.6);;
     position: absolute;
     left: 0;
@@ -16,19 +16,19 @@
     padding: 90px 0px;
   }
   
-.footer .social-icons {
+footer .social-icons {
     text-align: center;
     padding: 70px 0px;
     margin: 0px;
   }
   
-.footer .social-icons li {
+footer .social-icons li {
     display: inline;
     margin: 0px 10px;
   }
   
   
-.footer .fa {
+footer .fa {
     
    padding: 10px;
     font-size: 30px;
@@ -39,7 +39,7 @@
     border-radius: 50px;
   }
   
-.footer .fa:hover {
+footer .fa:hover {
       opacity: 0.7;
       text-decoration: none;
       color:white;

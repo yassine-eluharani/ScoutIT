@@ -44,8 +44,7 @@ class Ecole(models.Model):
 class Academic(models.Model):
     TYPE = (
         ('', '(Degree)'),
-        ('CPGE/BTS/DEUG/...','CPGE/BTS/DEUG/...'),
-        ('Licence','Licence '),
+        ('Bachelor','Bachelor '),
         ('Master','Master'),
         ('Doctorat','Doctorat'),
     )

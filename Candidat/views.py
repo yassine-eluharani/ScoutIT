@@ -12,7 +12,7 @@ from .models import *
 from .forms import *
 
 
-
+@unauthenticated_user
 def index(request):
     return render(request,'index.html')
 
@@ -50,7 +50,11 @@ def profil(request):
 def updateProfil(request):
     profil = request.user.profil
     user = request.user
-    score = ScorePersonalite.objects.get(Profil=profil)
+    try:
+        score = ScorePersonalite.objects.get(Profil=profil)
+    except:
+        score = None
+    
     formUser = EmailUsenameUpdateForm(instance=user)
     form = CreateProfil(instance=profil)
     if request.method == 'POST':        
@@ -104,7 +108,7 @@ def loginPage(request):
             if request.user.groups.exists():
                 group = request.user.groups.all()[0].name               
                 if group == 'Candidat':
-                    return redirect('profil')
+                    return redirect('Updateprofil')
                 else:
                     return redirect('profilEntr')
                     

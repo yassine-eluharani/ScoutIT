@@ -1,7 +1,6 @@
 body { 
     margin: 0;
-    font-family: raleway, sans-serif;
-    background: #E3E2DE;
+    font-family: raleway, sans-serif;    
     font-size: 14px;
     line-height: 22px;
     color: #555555;
@@ -117,3 +116,38 @@ body {
     background: #55ACEE;
     color: white;
   }
+
+  .btn:hover {
+    background-color: #FFDC00;
+    color: black;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  .btn-success {
+      background: #ffffff;
+      border-color: transparent;
+      text-align: center;
+      border-radius: 15px;
+      color: black;
+      position:relative;
+      border:1px solid black;
+      padding: 14px 36px;
+      -webkit-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out;
+  }
+  .btn-success span:before {
+    content: '\00ab';
+    position: relative;
+    opacity: 0;
+    top: 0;
+    left: -20px;
+    transition: 0.5s;
+  }
+  
+   .btn-success:hover span:before {
+    opacity: 1;
+    left: 0;
+  
+  }
+  
+  

@@ -8,7 +8,7 @@
 
   
 {% block content %}
-    <section class="preloader">
+    {% comment %} <section class="preloader">
   <div class="sk-circle">
        <div class="sk-circle1 sk-child"></div>
        <div class="sk-circle2 sk-child"></div>
@@ -23,22 +23,23 @@
        <div class="sk-circle11 sk-child"></div>
        <div class="sk-circle12 sk-child"></div>
      </div>
-</section>
+</section> {% endcomment %}
 
 
-<div class="pr1">     
+<div class="pr1">  
+{% include 'nav-bar.html' %}   
 
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
-<a href="{% url 'Updateprofil' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp" data-wow-delay="1.0s"> <span> Update your profile </span></a>
+<a href="{% url 'Updateprofil' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp" data-wow-delay="0.4s"> <span> Update your profile </span></a>
 
-<div class="resume wow fadeInUp" data-wow-delay="0.8s">
+<div class="resume wow fadeInUp" data-wow-delay="0.1s">
    <div class="resume_left">
      <div class="resume_profile">
        {% if request.user.profil.profil_pic.url is not None %}
-      <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
+        <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
       {% else %}
-      <img src="{% static 'images/user.png' %}" alt="profile_pic">
+        <img src="{% static 'images/user.png' %}" alt="profile_pic">
       {% endif %}
      </div>
      <div class="resume_content">
@@ -364,33 +365,11 @@
   </div>
  </div>
  <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-    <ul class="circles">
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-      </ul>
+  {% include 'bg-Candidat.html' %}  
   </div>
-    <ul class="circles3">
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-         <li></li>
-      </ul>
- 
-
+  
+  
+  
 {% endblock  %}
 
 
