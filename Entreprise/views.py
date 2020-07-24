@@ -37,6 +37,8 @@ def AddOffer(request):
     }
     return render(request,'form/add-formEntr.html',context)
 
+def scout(request):
+    return render(request,'Entreprise/scouting.html')
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])

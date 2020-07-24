@@ -2,6 +2,8 @@ from django.db import models
 from django_countries.fields import CountryField
 from django.contrib.auth.models import User
 
+from Entreprise.models import Poste
+
 # Create your models here.
 
 class Profil(models.Model):
@@ -28,7 +30,7 @@ class Profil(models.Model):
     pays = CountryField(blank_label='(Country)' ,null=True, blank=True)
     ville = models.CharField(max_length=20 ,null=True, blank=True)
     telephone = models.CharField(max_length=20 ,null=True, blank=True)
-    specialite = models.CharField(max_length=50 , null =True , blank=True)
+    poste = models.ForeignKey(Poste, on_delete=models.DO_NOTHING, null=True,blank=True)
     adresse = models.TextField(null=True,blank=True)
     linkdin = models.URLField(max_length=200,null=True,blank=True)
     facebook = models.URLField(max_length=200,null=True,blank=True)

@@ -7,6 +7,8 @@ urlpatterns = [
     path('', index,name='index'),
     path('Entreprise/', indexEntreprise ,name='indexEntreprise'),
     path('profilEntr/', profilEntr, name='profilEntr'),
+    path('scout/', scout, name='scout'),
+
     path('registerEntr/', registerEntr, name='registerEntr'),
     path('add_offer/', AddOffer, name="add_offer"),
     path('delete_offre/<str:pk>/', deleteOffre, name="delete_offre"),
