@@ -6,31 +6,34 @@
 {% endblock  %}
 
 
-
-
 {% block content %}
-
 {% include 'nav-bar.html' %}
 
 <div class="container">
-  <div class="card-deck">
-
-    <div class="card">
-      <img src="{% static 'images/user.png' %}" alt="pic" style="width:100%">
-      <h3>Full name</h3>
-      <p class="title">Specialty</p>
-
-      <div style="margin: 24px 0;">
-
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
+  <div class="row">
+    {% for profil in profils %}
+    <div class="col-4 mb-5">
+      <div class="card shadow-lg border border-secondary rounded">        
+            <div class="imgBx">
+              <img src="{% static 'images/user.png' %}" alt="">
+            </div>
+            <div class="contentBx">
+              <h2>{{ profil.nom }}</h2>
+              <h2>{{ profil.prenom }}</h2>
+              <div class="size">
+                <span><a href="#" class="fa fa-facebook"></a></span>
+                <span><a href="#" class="fa fa-linkedin"></a></span>
+                <span><a href="#" class="fa fa-twitter"></a></span>
+              </div>
+              <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+        </div>
       </div>
-      <p><button>Contact</button></p>
     </div>
+    {% endfor %}
 
   </div>
+  
 </div>
-  {% include 'bg-Entreprise.html' %}
+{% include 'bg-Entreprise.html' %}
 
-  {% endblock  %}
+{% endblock  %}

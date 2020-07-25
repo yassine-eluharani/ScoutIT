@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 #Local imports
+from Candidat.models import Profil
 from .models import *
 from Candidat.decorators import *
 from Candidat.forms import CreateUserForm
@@ -37,8 +38,19 @@ def AddOffer(request):
     }
     return render(request,'form/add-formEntr.html',context)
 
-def scout(request):
-    return render(request,'Entreprise/scouting.html')
+def scout(request,my_id):    
+    o = Offre.objects.get(id=my_id)
+    poste = o.poste
+    degree = o.diplome
+    exp = o.experience
+    profils = Profil.objects.filter(poste=poste)
+    context = {
+        'profils':profils,
+        'degree' : degree,
+        'exp' : exp
+    }
+    
+    return render(request,'Entreprise/scouting.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])

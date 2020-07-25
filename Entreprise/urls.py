@@ -7,7 +7,7 @@ urlpatterns = [
     path('', index,name='index'),
     path('Entreprise/', indexEntreprise ,name='indexEntreprise'),
     path('profilEntr/', profilEntr, name='profilEntr'),
-    path('scout/', scout, name='scout'),
+    path('scout/<int:my_id>/', scout, name='scout'),
 
     path('registerEntr/', registerEntr, name='registerEntr'),
     path('add_offer/', AddOffer, name="add_offer"),

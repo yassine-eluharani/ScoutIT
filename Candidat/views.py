@@ -36,7 +36,7 @@ def cv(request):
     }
     return render(request ,'candidat/profil.html',context)
 
-
+@login_required(login_url='login')
 def profil(request):
     profil = request.user.profil  
     try:  
@@ -71,7 +71,6 @@ def updateProfil(request):
         'score' : score
     }
     return render(request,'candidat/update-profil-personel.html',context)
-
 
 #Registartion
 @unauthenticated_user
@@ -122,7 +121,6 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
-
 
 #Projet_realise
 @login_required(login_url='login')
