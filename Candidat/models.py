@@ -35,6 +35,8 @@ class Profil(models.Model):
     linkdin = models.URLField(max_length=200,null=True,blank=True)
     facebook = models.URLField(max_length=200,null=True,blank=True)
     twitter = models.URLField(max_length=200,null=True,blank=True)
+    nbr_annee = models.IntegerField(null = True , default=0,blank=True)
+    type_diplome = models.CharField(max_length=20 ,null=True)
 
     def __str__(self):
         return self.nom + self.prenom
@@ -65,9 +67,10 @@ class Experience_Pro(models.Model):
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)
     annee_debut = models.IntegerField( null=True)
     annee_fin = models.IntegerField( null=True)
+    nbr_annee = models.IntegerField(null = True , default=0)
     description_exp_pro = models.TextField(null=True,blank=True)
     def __str__(self):
-        return self.description_exp_pro + " de " + self.profil.nom
+        return self.description_exp_pro + " de " + self.profil.nom        
 
 class Projet_realise(models.Model):
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)

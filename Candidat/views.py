@@ -168,12 +168,13 @@ def createExperience_pro(request):
     
     ProjetFormSet = inlineformset_factory(Profil,
     Experience_Pro,
-    fields=('annee_debut' ,'annee_fin' ,'description_exp_pro'),
+    fields=('annee_debut' ,'annee_fin' ,'nbr_annee','description_exp_pro'),
     extra=1,
     can_delete=False,
     widgets={
         'annee_debut' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Start'}),
         'annee_fin' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'End'}),
+        'nbr_annee' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Number of years'}),
         'description_exp_pro' : forms.Textarea(attrs={'class':'form-control', 'placeholder':'Description'}),
     }
     )

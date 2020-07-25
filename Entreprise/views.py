@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 #Local imports
-from Candidat.models import Profil
+from Candidat.models import Profil,Experience_Pro,Academic
 from .models import *
 from Candidat.decorators import *
 from Candidat.forms import CreateUserForm
@@ -38,16 +38,32 @@ def AddOffer(request):
     }
     return render(request,'form/add-formEntr.html',context)
 
-def scout(request,my_id):    
+def scout(request,my_id):
     o = Offre.objects.get(id=my_id)
     poste = o.poste
     degree = o.diplome
-    exp = o.experience
+    expPoste = o.experience
     profils = Profil.objects.filter(poste=poste)
+    countExp = 0
+    for p in profils:
+        exps = Experience_Pro.objects.filter(profil=p)   
+        for exp in exps:
+            p.nbr_annee += exp.nbr_annee  
+    
+    for p in profils:
+        academics = Academic.objects.filter(profil=p)
+        for academic in academics:
+            if academic.type_diplome == 'Doctorat':                
+                p.type_diplome = academic.type_diplome
+            elif academic.type_diplome == 'Master':                
+                p.type_diplome = academic.type_diplome
+            elif academic.type_diplome == 'Bachelor':
+                p.type_diplome = academic.type_diplome
+                      
     context = {
         'profils':profils,
         'degree' : degree,
-        'exp' : exp
+        'expPoste' : expPoste,
     }
     
     return render(request,'Entreprise/scouting.html',context)
