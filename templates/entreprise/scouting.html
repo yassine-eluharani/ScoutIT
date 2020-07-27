@@ -7,31 +7,59 @@
 
 
 {% block content %}
-{% include 'nav-bar.html' %}
 
-<div class="container">
-  <div class="row">
+<div class="container-fluid">
+  <h2>Recommended</h2>
+  <div class="row">   
     {% for profil in profils %}
-    <div class="col-4 mb-5">
-      <div class="card shadow-lg border border-secondary rounded">        
+      {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
+        <div class="col-3 mb-5">
+         <div class="card shadow-lg border border-secondary rounded">        
             <div class="imgBx">
               <img src="{% static 'images/user.png' %}" alt="">
             </div>
             <div class="contentBx">
-              <h2>{{ profil.nbr_annee }}</h2>
-              <h2>{{ profil.type_diplome }}</h2>
+              {% comment %} <h2>{{ profil.nbr_annee }}</h2> {% endcomment %}
+              <h2>{{ profil.nom }}</h2>
               <h2>{{ profil.prenom }}</h2>
               <div class="size">
                 <span><a href="#" class="fa fa-facebook"></a></span>
                 <span><a href="#" class="fa fa-linkedin"></a></span>
                 <span><a href="#" class="fa fa-twitter"></a></span>
               </div>
-              <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+                  <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      {% endif %}    
     {% endfor %}
+  </div>
+  <hr><hr><hr>
 
+  <h2>Other</h2>
+  <div class="row">
+    {% for profil in profils %}
+      {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
+        <div class="col-3 mb-5">
+         <div class="card shadow-lg border border-secondary rounded">        
+            <div class="imgBx">
+              <img src="{% static 'images/user.png' %}" alt="">
+            </div>
+            <div class="contentBx">
+              {% comment %} <h2>{{ profil.nbr_annee }}</h2> {% endcomment %}
+              <h2>{{ profil.nom }}</h2>
+              <h2>{{ profil.prenom }}</h2>
+              <div class="size">
+                <span><a href="#" class="fa fa-facebook"></a></span>
+                <span><a href="#" class="fa fa-linkedin"></a></span>
+                <span><a href="#" class="fa fa-twitter"></a></span>
+              </div>
+                  <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+            </div>
+          </div>
+        </div>
+      {% endif %}    
+    {% endfor %}
   </div>
   
 </div>

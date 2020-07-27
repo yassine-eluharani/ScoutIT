@@ -171,8 +171,7 @@
         data: {
             labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
             datasets: [{
-                labels: 'Personality',
-                
+                label: 'Personality',                
                 data: ["{{ score.ScoreOp }}", "{{ score.ScoreCon }}", "{{ score.ScoreExt }}", "{{ score.ScoreAgr }}", "{{ score.ScoreNeu }}"],
                 backgroundColor: [
                     'rgba(255, 221, 0, 0.3)',
@@ -194,16 +193,7 @@
                     
                 ],                
             }]
-        },
-        options: {
-            scales: {                
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: false
-                    }
-                }]
-            }
-        }
+        },   
     });
     </script>
 

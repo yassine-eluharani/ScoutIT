@@ -48,7 +48,7 @@ def scout(request,my_id):
     for p in profils:
         exps = Experience_Pro.objects.filter(profil=p)   
         for exp in exps:
-            p.nbr_annee += exp.nbr_annee  
+            p.nbr_annee += exp.nbr_annee          
     
     for p in profils:
         academics = Academic.objects.filter(profil=p)
@@ -59,7 +59,7 @@ def scout(request,my_id):
                 p.type_diplome = academic.type_diplome
             elif academic.type_diplome == 'Bachelor':
                 p.type_diplome = academic.type_diplome
-                      
+    
     context = {
         'profils':profils,
         'degree' : degree,
