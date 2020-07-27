@@ -45,27 +45,29 @@ body {
 
 .st1{/*holy roman empire style*/
   background-color:#FFDC00;
-  min-height:400px;
+  min-height:600px;
   position: relative;
   overflow: hidden;
   padding-top: 20px;
   z-index: -1;
+  padding-top: 100px;
 }
 .st2{/*ke3ba style*/
 
   background-color:black;
-  min-height:450px;
+  min-height:600px;
   position: relative;
   overflow: hidden;
   padding-top: 20px;
   z-index: -1;
+  padding-top: 100px;
 }
 
 .pr2{ /*vatican style*/
   position: relative;
- background-color: transparent;
-  min-height: 100%;
-  padding-top: 50px;
+  background-color: transparent;
+  min-height: 600px;
+  padding-top: 100px;
 }
 
 
