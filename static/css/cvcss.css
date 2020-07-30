@@ -283,15 +283,13 @@ body {
 .btn-success {
     background: #ffffff;
     border-color: transparent;
-    text-align: center;
+    text-align: center;    
     border-radius: 15px;
     color: black;
-    left:40%;
+    left:80%;
     position:relative;
     border:1px solid black;
-    padding: 14px 36px;
-    margin-top: 42px;
-    margin-right: 16px;
+    padding: 14px 36px;    
     -webkit-transition: all 0.6s ease-in-out;
     transition: all 0.6s ease-in-out;
 }

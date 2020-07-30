@@ -11,8 +11,6 @@ urlpatterns = [
     path('logout/', views.logoutUser, name="logout"),
     path('cv/', views.cv, name="profil"),
     path('updateprofil/',views.updateProfil,name="Updateprofil"),
-    path('profil/',views.profil,name="profil_personel"),
-
     path('personalite/',views.personalite,name='personalite'),
 
 

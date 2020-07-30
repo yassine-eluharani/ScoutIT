@@ -23,11 +23,11 @@
               <h2>{{ profil.nom }}</h2>
               <h2>{{ profil.prenom }}</h2>
               <div class="size">
-                <span><a href="#" class="fa fa-facebook"></a></span>
-                <span><a href="#" class="fa fa-linkedin"></a></span>
-                <span><a href="#" class="fa fa-twitter"></a></span>
+                <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
+                <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
+                <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
               </div>
-                  <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+                  <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>          
             </div>
           </div>
         </div>
@@ -49,11 +49,11 @@
               <h2>{{ profil.nom }}</h2>
               <h2>{{ profil.prenom }}</h2>              
               <div class="size">
-                <span><a href="#" class="fa fa-facebook"></a></span>
-                <span><a href="#" class="fa fa-linkedin"></a></span>
-                <span><a href="#" class="fa fa-twitter"></a></span>
+                <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
+                <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
+                <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
               </div>
-                  <a class="btn btn-dark btn-block" href="#">View Profil</a>          
+                  <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
             </div>
           </div>
         </div>

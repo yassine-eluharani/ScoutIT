@@ -80,8 +80,6 @@ def deleteOffre(request ,pk):
     }
     return render(request,'form/delete.html',context)
 
-
-
 @unauthenticated_user
 def registerEntr(request):
     form = CreateUserForm()
@@ -107,12 +105,48 @@ def registerEntr(request):
     return render(request ,'registration/registerEntr.html',context)
 
 
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Entreprise'])
+def cvEntr(request,my_id):
+    profil = Profil.objects.get(id=my_id)
+    academics = profil.academic_set.all()
+    exp_pros = profil.experience_pro_set.all()
+    projets = profil.projet_realise_set.all()
+    certificats = profil.certificat_set.all()
+    langues = profil.language_set.all()
+    context={
+        'profil':profil,
+        'academics' : academics,
+        'exp_pros':exp_pros,
+        'projets' :projets,
+        'certificats':certificats,
+        'langues' : langues
+    }
+    return render(request ,'entreprise/cv.html',context)
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Entreprise'])
+def profil(request,my_id):
+    profil = Profil.objects.get(id=my_id)
+    try:  
+        score = ScorePersonalite.objects.get(Profil=profil)
+    except:
+        score=None
+    context = {
+       'score' : score ,
+       'profil':profil
+    }
+    return render(request,'entreprise/profil-personel.html',context)
+
+    
+
+
 def about(request):
     return render(request,'about.html')
 
 def contact(request):
     return render(request,'contact.html')
-
 
 def indexEntreprise(request):
     return render(request,'Entreprise/startEntreprise.html')

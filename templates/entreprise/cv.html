@@ -8,16 +8,19 @@
 
 
 {% block content %}
+
+
 <div class="pr1">
 
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
 
 
+
   <div class="resume wow fadeInUp" data-wow-delay="0.1s">
     <div class="resume_left">
       <div class="resume_profile">
-        {% if request.user.profil.profil_pic.url is not None %}
-        <img src="{{ request.user.profil.profil_pic.url }}" alt="profile_pic">
+        {% if  profil.profil_pic.url is not None %}
+        <img src="{{  profil.profil_pic.url }}" alt="profile_pic">
         {% else %}
         <img src="{% static 'images/user.png' %}" alt="profile_pic">
         {% endif %}
@@ -25,7 +28,7 @@
       <div class="resume_content">
         <div class="resume_item resume_info">
           <div class="title">
-            <p class="bold">{{ request.user.profil.nom }} {{ request.user.profil.prenom }}</p>
+            <p class="bold">{{  profil.nom }} {{  profil.prenom }}</p>
 
           </div>
           <ul>
@@ -34,7 +37,7 @@
                 <i class="fas fa-map-signs"></i>
               </div>
               <div class="data">
-                {{ request.user.profil.adresse }} <br /> {{ request.user.profil.pays }}
+                {{  profil.adresse }} <br /> {{  profil.pays }}
               </div>
             </li>
             <li>
@@ -42,7 +45,7 @@
                 <i class="fas fa-mobile-alt"></i>
               </div>
               <div class="data">
-                {{ request.user.profil.telephone }}
+                {{ profil.telephone }}
               </div>
             </li>
             <li>
@@ -50,7 +53,7 @@
                 <i class="fas fa-envelope"></i>
               </div>
               <div class="data">
-                {{ request.user.email }}
+                {{ profil.user.email }}
               </div>
             </li>
 
@@ -67,7 +70,7 @@
               </div>
               <div class="data">
                 <p class="semi-bold">Facebook</p>
-                <p>{{ request.user.profil.facebook }}</p>
+                <p>{{ profil.facebook }}</p>
               </div>
             </li>
             <li>
@@ -76,7 +79,7 @@
               </div>
               <div class="data">
                 <p class="semi-bold">Twitter</p>
-                <p>{{ request.user.profil.twitter }}</p>
+                <p>{{ profil.twitter }}</p>
               </div>
             </li>
             <li>
@@ -85,7 +88,7 @@
               </div>
               <div class="data">
                 <p class="semi-bold">Linkedin</p>
-                <p>{{ request.user.profil.linkdin }}</p>
+                <p>{{ profil.linkdin }}</p>
               </div>
             </li>
           </ul>
@@ -96,16 +99,17 @@
       <div class="resume_item resume_about">
         <div class="row mb-4">
           <div class="col">
-            <a href="{% url 'Updateprofil' %}"  class="btn btn-md btn-success smoothScroll wow fadeInUp" data-wow-delay="0.4s"> <span>Go back to profil</span></a>
+            <a href="{% url 'profil_personel' profil.id %}" class="btn btn-md btn-success smoothScroll wow fadeInUp"
+              data-wow-delay="0.4s"> <span>Go back to profil</span></a>
           </div>
         </div>
-
+        
         <div class="row">
           <div class="col-4 title">
             <p class="bold">Speciality</p>
           </div>
           <div class="col-8">
-            <p class="font-weight-bold" style="font-size: 30px;">{{ request.user.profil.poste }}</p>
+            <p class="font-weight-bold" style="font-size: 30px;">{{  profil.poste }}</p>
           </div>
         </div>
       </div>
@@ -114,8 +118,6 @@
           <p class="bold">Education</p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_academic' %}">Add/Update
-            Education</a>
           <br>
         </div>
         <ul>
@@ -127,14 +129,6 @@
               <div class="row">
                 <div class="col-10">
                   {{ academic.description_academic }}
-                </div>
-                <div class="col-2">
-                  <form method="POST" action="{% url 'delete_academic' academic.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-danger btn-block" type="submit" name="delete">
-                      <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>
@@ -148,8 +142,6 @@
           <p class="bold">Work Experience</p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_experience_pro' %}">Add/Update
-            Work Experience</a>
           <br>
         </div>
         <ul>
@@ -161,14 +153,7 @@
                 <div class="col-10">
                   {{ exp_pro.description_exp_pro }}
                 </div>
-                <div class="col-2">
-                  <form method="POST" action="{% url 'delete_experience_pro' exp_pro.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-danger btn-block" type="submit" name="delete">
-                      <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
-                    </button>
-                  </form>
-                </div>
+
               </div>
             </div>
             <br>
@@ -182,7 +167,7 @@
           <p class="bold">Projects </p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_projet' %}">Add/Update Projects</a>
+
           <br>
         </div>
         <ul>
@@ -194,14 +179,7 @@
                 <div class="col-10">
                   {{ projet.description_projet }}
                 </div>
-                <div class="col-2">
-                  <form method="POST" action="{% url 'delete_projet' projet.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-danger btn-block" type="submit" name="delete">
-                      <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
-                    </button>
-                  </form>
-                </div>
+
               </div>
             </div>
             <br>
@@ -216,8 +194,7 @@
           <p class="bold">Certificate</p>
         </div>
         <div>
-          <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_certificat' %}">Add/Update
-            Certificate</a>
+
           <br>
         </div>
         <ul>
@@ -230,14 +207,7 @@
                   Certificate in: <b>{{ certificat.titre_cert }}</b> <br> Credential ID:
                   <b>{{ certificat.accreditation }}</b>
                 </div>
-                <div class="col-2">
-                  <form method="POST" action="{% url 'delete_certificat' certificat.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-danger btn-block" type="submit" name="delete">
-                      <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
-                    </button>
-                  </form>
-                </div>
+
               </div>
             </div>
             <br>
@@ -248,7 +218,6 @@
 
       <div class="resume_item resume_work">
         <p class="bold">Languages</p>
-        <a class="btn btn-outline-primary btn-sm btn-block" href="{% url 'create_language' %}">Add/Update Language</a>
         <div class="row mt-3">
           <div class="col-5">
             <b>
@@ -271,14 +240,6 @@
           <div class="col-5">
             {{ langue.level }}
           </div>
-          <div class="col-2">
-            <form method="POST" action="{% url 'delete_language' langue.id %}">
-              {% csrf_token %}
-              <button class="btn btn-danger btn-block" type="submit" name="delete">
-                <img class="img-fluid" src="{% static 'images/delete.png' %}" alt="Delete">
-              </button>
-            </form>
-          </div>
         </div>
         {% endfor %}
       </div>
@@ -288,7 +249,7 @@
   </div>
 </div>
 <a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
-{% include 'bg-Candidat.html' %}
+{% include 'bg-Entreprise.html' %}
 </div>
 
 

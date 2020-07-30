@@ -9,14 +9,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
 <div class="container emp-profile border border-dark">
-    
+
     <form method="POST" action="" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="row mb-3">
-            <div class="col text-center">
-            {% if score is None %}
-                <a href="{% url 'personalite' %}"  class="btn btn-lg btn-success smoothScroll wow fadeInUp centre" data-wow-delay="0.4s"> <span> Take a Personality quiz</span></a>
-            {% endif %}
+            
+            <div class="col">
+                <a href="{% url 'profil' %}" style="float:right"  class="btn btn-md btn-success smoothScroll wow fadeInUp" data-wow-delay="0.4s"><span>Edit your CV</span></a>
             </div>
         </div>
         <div class="row mb-3">
@@ -24,9 +23,9 @@
                 <div class="profile-img">
                     <div class="row ml-5">
                         {% if request.user.profil.profil_pic.url is not None %}
-                            <img src="{{ request.user.profil.profil_pic.url }}" alt="" />
+                        <img src="{{ request.user.profil.profil_pic.url }}" alt="" />
                         {% else %}
-                            <img src="{% static 'images/user.png' %}" alt="" />
+                        <img src="{% static 'images/user.png' %}" alt="" />
                         {% endif %}
                     </div>
                     <div class="row ml-5 mt-3">
@@ -34,22 +33,30 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <div class="col-md-8 mt-5">
-                <div class="profile-head">                
-                        <div class="row">
-                            <div class="col">
-                                {{ form.nom }}
-                            </div>
-                            <div class="col">
-                                {{ form.prenom }}
-                            </div>
-                        </div>                    
+                <div class="profile-head">
+                    <div class="row">
+                        <div class="col">
+                            {{ form.nom }}
+                        </div>
+                        <div class="col">
+                            {{ form.prenom }}
+                        </div>
+                    </div>
                     <div class="row mt-4">
                         <div class="col">
                             {{ form.poste }}
                         </div>
+                    </div>
+                    <div class="row mt-4">                        
+                        <div class="col">
+                            {% if score is None %}
+                            <a href="{% url 'personalite' %}" class="btn btn-dark btn-block btn-md centre wow fadeInUp"
+                                data-wow-delay="0.4s">Take a Personality quiz</a>
+                            {% endif %}
+                        </div>                        
                     </div>
 
                     <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
@@ -64,7 +71,7 @@
                     </ul>
                 </div>
             </div>
-            
+
         </div>
         <div class="row">
             <div class="col-md-4 ">
@@ -75,7 +82,7 @@
                 <p>Linkdin: {{ form.linkdin }}</p>
                 <p>Facebook: {{ form.facebook }}</p>
                 <p>Twitter: {{ form.twitter }}</p>
-              
+
             </div>
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
@@ -138,21 +145,21 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col">
-                                <input type="submit" class="btn btn-dark btn-block button-hover mt-5" name="UpdateProfil"
-                                    value="Update" />
+                                <input type="submit" class="btn btn-dark btn-block button-hover mt-5"
+                                    name="UpdateProfil" value="Update" />
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <canvas id="myChart" width="400" height="400"></canvas>                    
+                        <canvas id="myChart" width="400" height="400"></canvas>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
     </form>
-    
+
     <br>
     {% for message in messages %}
     <p class="text-danger"> {{ message }} </p>
@@ -163,37 +170,37 @@
 </div>
 
 <script>
-    
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: ['Openness', 'Conscientiousness', 'Extraversion', 'Agreeableness', 'Neuroticism'],
             datasets: [{
-                label: 'Personality',                
+                label: 'Personality',
                 data: ["{{ score.ScoreOp }}", "{{ score.ScoreCon }}", "{{ score.ScoreExt }}", "{{ score.ScoreAgr }}", "{{ score.ScoreNeu }}"],
                 backgroundColor: [
                     'rgba(255, 221, 0, 0.3)',
-                    
-                    
+
+
                 ],
                 borderColor: [
-                    'rgba(255, 221, 0, 1)',                
-                    
+                    'rgba(255, 221, 0, 1)',
+
                 ],
                 borderWidth: 3,
 
-                pointBackgroundColor :[
+                pointBackgroundColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    
-                ],                
+
+                ],
             }]
-        },   
+        },
     });
-    </script>
+</script>
 
 {% endblock content %}

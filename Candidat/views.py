@@ -36,17 +36,6 @@ def cv(request):
     }
     return render(request ,'candidat/profil.html',context)
 
-@login_required(login_url='login')
-def profil(request):
-    profil = request.user.profil  
-    try:  
-        score = ScorePersonalite.objects.get(Profil=profil)
-    except:
-        score=None
-    context = {
-       'score' : score 
-    }
-    return render(request,'candidat/profil-personel.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
@@ -347,17 +336,15 @@ def personalite(request):
                 elif Rep == 'neuroticism':
                     reponse.ScoreNeu += 1                                            
             reponse.save()
-            return redirect("profil")      
+            return redirect("Updateprofil")      
         except:
-            return redirect("profil")
+            return redirect("Updateprofil")
     context={
         'questions':questions
     }
     return render(request , 'candidat/personalite.html' , context)
     
 
-
-    
 
 
 
