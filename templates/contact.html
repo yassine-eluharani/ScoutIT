@@ -2,52 +2,53 @@
 {% load static %}
 
 {% block style %}
-  <link rel="stylesheet" href="{% static 'css/concss.css' %}">
+<link rel="stylesheet" href="{% static 'css/concss.css' %}">
 {% endblock  %}
 
 {% block content %}
-  <section class="preloader">
+<section class="preloader">
   <div class="sk-circle">
-       <div class="sk-circle1 sk-child"></div>
-       <div class="sk-circle2 sk-child"></div>
-       <div class="sk-circle3 sk-child"></div>
-       <div class="sk-circle4 sk-child"></div>
-       <div class="sk-circle5 sk-child"></div>
-       <div class="sk-circle6 sk-child"></div>
-       <div class="sk-circle7 sk-child"></div>
-       <div class="sk-circle8 sk-child"></div>
-       <div class="sk-circle9 sk-child"></div>
-       <div class="sk-circle10 sk-child"></div>
-       <div class="sk-circle11 sk-child"></div>
-       <div class="sk-circle12 sk-child"></div>
-     </div>
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
 </section>
 
-<div class="pr1">     
-<section id="home">
-<div class="container" style="padding-top: 30px;">
-  <div class="wow fadeInUp" style="text-align:center" data-wow-delay="0.4s">
-    <h2 style="color:#FFDC00">Contact Us</h2>
-    <h3 style="color:white">Swing by for a cup of coffee, or leave us a message:</h3>
-  </div>
-  <div class="row">
-   
-    <div class="column wow fadeInUp" data-wow-delay="0.8s">
-      <form action="/action_page.php">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" name="firstname" placeholder="Your name..">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+<div class="pr1">
+  <section id="home">
+    <div class="container" style="padding-top: 30px;">
+      <div class="wow fadeInUp" style="text-align:center" data-wow-delay="0.4s">
+        <h2 style="color:#FFDC00">Contact Us</h2>
+        <h3 style="color:white">Swing by for a cup of coffee, or leave us a message:</h3>
+      </div>
+      <div class="row">
 
-        <label for="subject">Subject</label>
-        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-        <input type="submit" value="Submit">
-      </form>
+        <div class="column wow fadeInUp" data-wow-delay="0.8s">
+          <form action="">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" placeholder="Your name..">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your email..">
+            <label for="subject">Subject</label>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+     
 </div>
-</section>
-{% endblock  %}
 
-
-
+  {% endblock  %}

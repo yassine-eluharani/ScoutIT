@@ -58,8 +58,7 @@ def scout(request,my_id):
             elif academic.type_diplome == 'Master':                
                 p.type_diplome = academic.type_diplome
             elif academic.type_diplome == 'Bachelor':
-                p.type_diplome = academic.type_diplome
-    
+                p.type_diplome = academic.type_diplome   
     context = {
         'profils':profils,
         'degree' : degree,
@@ -129,12 +128,13 @@ def cvEntr(request,my_id):
 @allowed_users(allowed_roles=['Entreprise'])
 def profil(request,my_id):
     profil = Profil.objects.get(id=my_id)
-    try:  
+    try:
         score = ScorePersonalite.objects.get(Profil=profil)
     except:
-        score=None
+        score = None
+    print(score)
     context = {
-       'score' : score ,
+       'score' : score,
        'profil':profil
     }
     return render(request,'entreprise/profil-personel.html',context)

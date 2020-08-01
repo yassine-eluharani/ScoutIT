@@ -1,66 +1,75 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/scout.css' %}">
-{% endblock  %}
+{% endblock %}
+
 
 {% block content %}
-
 <div class="container-fluid">
-  <h2>Recommended</h2>
-  <div class="row">   
-    {% for profil in profils %}
-      {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
+    <h2>Recommended</h2>
+    <div class="row">
+        {% for profil in profils %}
+        {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
+        
         <div class="col-3 mb-5">
-         <div class="card shadow-lg border border-secondary rounded">        
+            <div class="card shadow-lg border border-secondary rounded">
+                <div class="imgBx">
+                {% if profil.profil_pic %}
+                    <img src="{{ profil.profil_pic.url }}" alt="profile_pic">
+                {% else %}
+                    <img src="{% static 'images/user.png' %}" alt="profile_pic">                 
+                {% endif %}
+                </div>
+                <div class="contentBx">                    
+                    <h2>{{ profil.nom }}</h2>
+                    <h2>{{ profil.prenom }}</h2>
+                    <div class="size">
+                        <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
+                        <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
+                        <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
+                    </div>
+                    <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
+                </div>
+            </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<hr>
+<hr>
+<hr>
+
+<h2>Other</h2>
+<div class="row">
+    {% for profil in profils %}
+    {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
+    <div class="col-3 mb-5">
+        <div class="card shadow-lg border border-secondary rounded">
             <div class="imgBx">
-              <img src="{% static 'images/user.png' %}" alt="">
+                {% if profil.profil_pic %}
+                    <img src="{{ profil.profil_pic.url }}" alt="profile_pic">
+                {% else %}
+                    <img src="{% static 'images/user.png' %}" alt="profile_pic">                 
+                {% endif %}
             </div>
             <div class="contentBx">
-              {% comment %} <h2>{{ profil.nbr_annee }}</h2> {% endcomment %}
-              <h2>{{ profil.nom }}</h2>
-              <h2>{{ profil.prenom }}</h2>
-              <div class="size">
-                <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
-                <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
-                <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
-              </div>
-                  <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>          
+                <h2>{{ profil.nom }}</h2>
+                <h2>{{ profil.prenom }}</h2>
+                <div class="size">
+                    <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
+                    <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
+                    <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
+                </div>
+                <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
             </div>
-          </div>
         </div>
-      {% endif %}    
+    </div>
+    {% endif %}
     {% endfor %}
-  </div>
-  <hr><hr><hr>
+</div>
 
-  <h2>Other</h2>
-  <div class="row">
-    {% for profil in profils %}
-      {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
-        <div class="col-3 mb-5">
-         <div class="card shadow-lg border border-secondary rounded">        
-            <div class="imgBx">
-              <img src="{% static 'images/user.png' %}" alt="">
-            </div>
-            <div class="contentBx">            
-              <h2>{{ profil.nom }}</h2>
-              <h2>{{ profil.prenom }}</h2>              
-              <div class="size">
-                <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
-                <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
-                <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
-              </div>
-                  <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
-            </div>
-          </div>
-        </div>
-      {% endif %}    
-    {% endfor %}
-  </div>
-  
 </div>
 {% include 'bg-Entreprise.html' %}
 
-{% endblock  %}
+{% endblock %}

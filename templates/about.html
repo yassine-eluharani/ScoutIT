@@ -1,89 +1,94 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block style %} 
-  <link rel="stylesheet" href="{% static 'css/concss.css' %}">
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/concss.css' %}">
 {% endblock  %}
 
 
 {% block content %}
-  <section class="preloader">
+<section class="preloader">
   <div class="sk-circle">
-       <div class="sk-circle1 sk-child"></div>
-       <div class="sk-circle2 sk-child"></div>
-       <div class="sk-circle3 sk-child"></div>
-       <div class="sk-circle4 sk-child"></div>
-       <div class="sk-circle5 sk-child"></div>
-       <div class="sk-circle6 sk-child"></div>
-       <div class="sk-circle7 sk-child"></div>
-       <div class="sk-circle8 sk-child"></div>
-       <div class="sk-circle9 sk-child"></div>
-       <div class="sk-circle10 sk-child"></div>
-       <div class="sk-circle11 sk-child"></div>
-       <div class="sk-circle12 sk-child"></div>
-     </div>
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
 </section>
 
-<div class="pr1">  
+<div class="pr1">
 
-<h2 style="text-align:center;padding-top: 50px; ">Our Team</h2>
-<div class="container" style="padding-top: 50px;">
-  <div class="row">
+  <h1 style="text-align:center;padding-top: 50px; color: black; font-size:70px;">Our Team</h1>
+  <div class="container" style="padding-top: 50px;">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="our-team">
+          <div class="picture">
+            <img class="img-fluid" src="{% static 'images/user.png' %}">
+          </div>
+          <div class="team-content">
+            <h3 class="name">ELUHARANI Yassine</h3>
+            <h4 class="title">Programmer</h4>
+            <h3 class="title mt-5">eluharani.yassine@gmail.com</h3>
+            <h3 class="title">+212 612345678</h3>
+          </div>
+          <ul class="social">
+            <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
+          </ul>
+        </div>
+      </div>
 
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="{% static 'images/user.png' %}">
-        </div>
-        <div class="team-content">
-          <h3 class="name">ELUHARANI Yassine</h3>
-          <h4 class="title">Programmer</h4>
-        </div>
-         <ul class="social">
-          <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
-        </ul>
-  </div>
-</div>
-  
-    
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="{% static 'images/user.png' %}">
-        </div>
-        <div class="team-content">
-          <h3 class="name">EDDEKKAKI Salmane</h3>
-          <h4 class="title">Web Designer</h4>
-        </div>
-         <ul class="social">
-          <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
-        </ul>
-  </div>
-  </div>
-  
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="our-team">
-        <div class="picture">
-          <img class="img-fluid" src="{% static 'images/user.png' %}">
-        </div>
-        <div class="team-content">
-          <h3 class="name">CHAMMAME Mahmoud</h3>
-          <h4 class="title">Researcher</h4>
-        </div>
-     <ul class="social">
-          <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
-          <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
-        </ul>
-  </div>
-</div>
 
-</div>
-</div>
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="our-team">
+          <div class="picture">
+            <img class="img-fluid" src="{% static 'images/user.png' %}">
+          </div>
+          <div class="team-content">
+            <h3 class="name">EDDEKKAKI Salmane</h3>
+            <h4 class="title">Web Designer</h4>
+            <h3 class="title mt-5">sal.eddekkaki99@gmail.com</h3>
+            <h3 class="title">+212 612345678</h3>
+          </div>
+          <ul class="social">
+            <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="our-team">
+          <div class="picture">
+            <img class="img-fluid" src="{% static 'images/user.png' %}">
+          </div>
+          <div class="team-content">
+            <h3 class="name">CHAMMAME Mahmoud</h3>
+            <h4 class="title">Researcher</h4>
+            <h3 class="title mt-5">ch.mahmoud.me@gmail.com</h3>
+            <h3 class="title">+212 612345678</h3>
+          </div>
+          <ul class="social">
+            <li><a href="#" class="fa  fa-linkedin" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-facebook" aria-hidden="true"></a></li>
+            <li><a href="#" class="fa fa-twitter" aria-hidden="true"></a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 

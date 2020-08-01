@@ -11,7 +11,7 @@ nav {
     height: 80px;
     width: 100%;
     transition: top 0.5s;
-    z-index: 1;
+    z-index: -1;
 }
 
 label.logo {
@@ -97,7 +97,7 @@ a.active {
         left: -100%;
         text-align: center;
         transition: all .5s;
-        overflow: auto;
+        /* overflow: auto; */
     }
      ::-webkit-scrollbar {
         display: none;
@@ -122,5 +122,6 @@ a.active {
     }
     #check:checked~ul {
         left: 0;
+        z-index: 1;
     }
 }
