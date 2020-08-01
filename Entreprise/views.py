@@ -24,8 +24,6 @@ def profilEntr(request):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])
 def AddOffer(request):    
-
-
     entreprise = request.user.profilentreprise        
     form = AddOfferForm(initial={'entreprise' : entreprise})
     if request.method == 'POST':            
@@ -38,6 +36,8 @@ def AddOffer(request):
     }
     return render(request,'form/add-formEntr.html',context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Entreprise'])
 def scout(request,my_id):
     o = Offre.objects.get(id=my_id)
     poste = o.poste
@@ -139,14 +139,13 @@ def profil(request,my_id):
     }
     return render(request,'entreprise/profil-personel.html',context)
 
-    
-
 
 def about(request):
     return render(request,'about.html')
 
 def contact(request):
     return render(request,'contact.html')
+
 
 def indexEntreprise(request):
     return render(request,'Entreprise/startEntreprise.html')

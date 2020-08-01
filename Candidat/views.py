@@ -16,6 +16,7 @@ from .forms import *
 def index(request):
     return render(request,'index.html')
 
+
 def indexCandidat(request):
     return render(request,'Candidat/startCandidat.html')
 
@@ -269,7 +270,6 @@ def deleteCertificat(request ,pk):
         certificat.delete()
         return redirect("profil")
     
-
 
 #Language
 @login_required(login_url='login')
