@@ -7,21 +7,21 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h2>Recommended</h2>
-    <div class="row">
+    <button type="button" class="collapsible">Recommended</button>
+    <div class="row content mt-5 mb-5">
         {% for profil in profils %}
         {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
-        
-        <div class="col-3 mb-5">
+
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
             <div class="card shadow-lg border border-secondary rounded">
                 <div class="imgBx">
-                {% if profil.profil_pic %}
+                    {% if profil.profil_pic %}
                     <img src="{{ profil.profil_pic.url }}" alt="profile_pic">
-                {% else %}
-                    <img src="{% static 'images/user.png' %}" alt="profile_pic">                 
-                {% endif %}
+                    {% else %}
+                    <img src="{% static 'images/user.png' %}" alt="profile_pic">
+                    {% endif %}
                 </div>
-                <div class="contentBx">                    
+                <div class="contentBx">
                     <h2>{{ profil.nom }}</h2>
                     <h2>{{ profil.prenom }}</h2>
                     <div class="size">
@@ -32,44 +32,59 @@
                     <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
                 </div>
             </div>
+        </div>
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
-</div>
-<hr>
-<hr>
-<hr>
+    
 
-<h2>Other</h2>
-<div class="row">
-    {% for profil in profils %}
-    {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
-    <div class="col-3 mb-5">
-        <div class="card shadow-lg border border-secondary rounded">
-            <div class="imgBx">
-                {% if profil.profil_pic %}
+    <button type="button" class="collapsible">Other</button>
+    <div class="row content mt-5 mb-5" style="display:none">
+        {% for profil in profils %}
+        {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
+        <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
+            <div class="card shadow-lg border border-secondary rounded">
+                <div class="imgBx">
+                    {% if profil.profil_pic %}
                     <img src="{{ profil.profil_pic.url }}" alt="profile_pic">
-                {% else %}
-                    <img src="{% static 'images/user.png' %}" alt="profile_pic">                 
-                {% endif %}
-            </div>
-            <div class="contentBx">
-                <h2>{{ profil.nom }}</h2>
-                <h2>{{ profil.prenom }}</h2>
-                <div class="size">
-                    <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
-                    <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
-                    <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
+                    {% else %}
+                    <img src="{% static 'images/user.png' %}" alt="profile_pic">
+                    {% endif %}
                 </div>
-                <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
+                <div class="contentBx">
+                    <h2>{{ profil.nom }}</h2>
+                    <h2>{{ profil.prenom }}</h2>
+                    <div class="size">
+                        <span><a href="{{ profil.facebook }}" class="fa fa-facebook"></a></span>
+                        <span><a href="{{ profil.linkdin }}" class="fa fa-linkedin"></a></span>
+                        <span><a href="{{ profil.twitter }}" class="fa fa-twitter"></a></span>
+                    </div>
+                    <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
+                </div>
             </div>
         </div>
+        {% endif %}
+        {% endfor %}
     </div>
-    {% endif %}
-    {% endfor %}
-</div>
 
 </div>
 {% include 'bg-Entreprise.html' %}
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "flex") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "flex";
+            }
+        });
+    }
+</script>
 
 {% endblock %}

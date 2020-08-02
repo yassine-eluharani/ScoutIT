@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 #Local imports
-from Candidat.models import Profil,Experience_Pro,Academic
+from Candidat.models import Profil,Experience_Pro,Academic,ScorePersonalite
 from .models import *
 from Candidat.decorators import *
 from Candidat.forms import CreateUserForm
@@ -127,7 +127,7 @@ def cvEntr(request,my_id):
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])
 def profil(request,my_id):
-    profil = Profil.objects.get(id=my_id)
+    profil = Profil.objects.get(id=my_id)    
     try:
         score = ScorePersonalite.objects.get(Profil=profil)
     except:
