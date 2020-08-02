@@ -37,11 +37,11 @@
 <nav id="navbar">
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
-    <i class="fas fa-bars"></i>
+    <i class="fa fa-bars"></i>
   </label>
     <a class="logo" href="{% url 'index' %}"><img src='{% static "images/ScoutIT.png" %}' style="height:80px; width:255px;"></a>
     <ul>
-        <li><a class="active" href="{% url 'index' %}">Home</a></li>
+        <li><a class="active-navbar" href="{% url 'index' %}">Home</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'profil' %}">Profil</a></li>
         {% endif %}

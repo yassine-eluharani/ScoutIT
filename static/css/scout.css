@@ -146,28 +146,38 @@ body {
 
 
 .collapsible {
-    background-color: #eee;
-    color: #444;
+    background:black;
+    color: #ffdc00;
     cursor: pointer;
-    margin-top: 30px;
     padding: 18px;
     width: 100%;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 30px;
   }
   
-
   .active, .collapsible:hover {
-    background-color: #ccc;
+    background-color: #FFDC00;
+    color: black;
+  }
+  
+  .collapsible:after {
+    content: '\002B';
+    
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:not(#navbar):after {
+    content: "\2212";
   }
   
   .content {
     padding: 0 18px;
-    display: flex;
+    max-height: 0;
+    width: 100%;
     overflow: hidden;
-
+    transition: max-height 0.2s ease-out;
   }
-
-    

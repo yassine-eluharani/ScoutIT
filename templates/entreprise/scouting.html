@@ -7,11 +7,10 @@
 
 {% block content %}
 <div class="container-fluid">
-    <button type="button" class="collapsible">Recommended</button>
-    <div class="row content mt-5 mb-5">
+    <h1 class="mt-5" style="font-size: 30px; "><span style="color: #ffdc00;" class="fa fa-star"></span> Recommended:</h1>
+    <div class="row mt-5 mb-5">
         {% for profil in profils %}
         {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
-
         <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
             <div class="card shadow-lg border border-secondary rounded">
                 <div class="imgBx">
@@ -36,12 +35,12 @@
         {% endif %}
         {% endfor %}
     </div>
-    
+
 
     <button type="button" class="collapsible">Other</button>
-    <div class="row content mt-5 mb-5" style="display:none">
+    <div class="row content mt-5 mb-5">
         {% for profil in profils %}
-        {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome %}
+        {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome  %}
         <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
             <div class="card shadow-lg border border-secondary rounded">
                 <div class="imgBx">
@@ -71,6 +70,8 @@
 {% include 'bg-Entreprise.html' %}
 
 <script>
+
+
     var coll = document.getElementsByClassName("collapsible");
     var i;
 
@@ -78,10 +79,10 @@
         coll[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
-            if (content.style.display === "flex") {
-                content.style.display = "none";
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
             } else {
-                content.style.display = "flex";
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     }
