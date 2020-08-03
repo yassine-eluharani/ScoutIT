@@ -1,1 +1,1 @@
-web: gunicorn myproject.wsgi
+web: gunicorn ScoutIT.wsgi --log-file -
