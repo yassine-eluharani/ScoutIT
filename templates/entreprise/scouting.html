@@ -7,10 +7,9 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1 class="mt-5" style="font-size: 30px; "><span style="color: #ffdc00;" class="fa fa-star"></span> Recommended:</h1>
+    <h1 class="mt-5" style="font-size: 30px; "><span style="color: #ffdc00;" class="fa fa-star"></span> Recommended: <small>({{ profilRec|length }})</small></h1>
     <div class="row mt-5 mb-5">
-        {% for profil in profils %}
-        {% if expPoste <= profil.nbr_annee and degree == profil.type_diplome %}
+        {% for profil in profilRec %}        
         <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
             <div class="card shadow-lg border border-secondary rounded">
                 <div class="imgBx">
@@ -31,16 +30,14 @@
                     <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
                 </div>
             </div>
-        </div>
-        {% endif %}
+        </div>        
         {% endfor %}
     </div>
 
 
-    <button type="button" class="collapsible">Other</button>
+    <button type="button" class="collapsible">Other <small>({{ profilOther|length }})</small></button>
     <div class="row content mt-5 mb-5">
-        {% for profil in profils %}
-        {% if expPoste >= profil.nbr_annee and degree != profil.type_diplome  %}
+        {% for profil in profilOther %}        
         <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-5">
             <div class="card shadow-lg border border-secondary rounded">
                 <div class="imgBx">
@@ -61,8 +58,7 @@
                     <a class="btn btn-dark btn-block" href="{% url 'profil_personel' profil.id %}">View Profil</a>
                 </div>
             </div>
-        </div>
-        {% endif %}
+        </div>        
         {% endfor %}
     </div>
 

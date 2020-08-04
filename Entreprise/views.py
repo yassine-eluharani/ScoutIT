@@ -45,6 +45,9 @@ def scout(request,my_id):
     expPoste = o.experience
     profils = Profil.objects.filter(poste=poste)
     countExp = 0
+    profilRec = []
+    profilOther = []
+
     for p in profils:
         exps = Experience_Pro.objects.filter(profil=p)   
         for exp in exps:
@@ -58,9 +61,16 @@ def scout(request,my_id):
             elif academic.type_diplome == 'Master':                
                 p.type_diplome = academic.type_diplome
             elif academic.type_diplome == 'Bachelor':
-                p.type_diplome = academic.type_diplome   
+                p.type_diplome = academic.type_diplome
+
+    for p in profils:
+        if expPoste <= p.nbr_annee and degree == p.type_diplome:
+            profilRec.append(p)
+        else:
+            profilOther.append(p) 
     context = {
-        'profils':profils,
+        'profilRec':profilRec,
+        'profilOther':profilOther,
         'degree' : degree,
         'expPoste' : expPoste,
     }
