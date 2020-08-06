@@ -75,7 +75,7 @@ def scout(request,my_id):
         'expPoste' : expPoste,
     }
     
-    return render(request,'Entreprise/scouting.html',context)
+    return render(request,'entreprise/scouting.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Entreprise'])
@@ -158,4 +158,4 @@ def contact(request):
 
 
 def indexEntreprise(request):
-    return render(request,'Entreprise/startEntreprise.html')
+    return render(request,'entreprise/startEntreprise.html')

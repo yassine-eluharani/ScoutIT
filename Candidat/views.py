@@ -18,7 +18,7 @@ def index(request):
 
 
 def indexCandidat(request):
-    return render(request,'Candidat/startCandidat.html')
+    return render(request,'candidat/startCandidat.html')
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Candidat'])
