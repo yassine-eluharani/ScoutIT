@@ -19,8 +19,8 @@ class Profil(models.Model):
         ('Widowed','Widowed'),
         ('Divorced','Divorced'),
     )
-    user = models.OneToOneField(User, null =True,on_delete=models.CASCADE , default="images/user.png")
-    profil_pic = models.ImageField(null=True, blank=True)
+    user = models.OneToOneField(User, null =True,on_delete=models.CASCADE)
+    profil_pic = models.ImageField(null=True, blank=True , default="images/user.png" )
     nom = models.CharField(max_length=20 ,null=True)
     prenom = models.CharField(max_length=20 ,null=True)
     date_n = models.DateField(null=True, blank=True)
@@ -90,12 +90,12 @@ class Certificat(models.Model):
 class Language(models.Model):
     lvl = (
         ('', '(Level)'),
-        ('A1','découverte'),
-        ('A2','usuel'),
-        ('B1','niveau seuil'),
-        ('B2','niveau avancé'),
-        ('C1','autonome'),
-        ('C2','maîtrise'),
+        ('A1','Beginner'),
+        ('A2','Elementary'),
+        ('B1','Intermediate'),
+        ('B2','Upper Intermediate'),
+        ('C1','Advanced'),
+        ('C2','Proficiency'),
     )
     profil = models.ForeignKey('Profil',on_delete=models.CASCADE ,null=True)
     langue = models.CharField(max_length=20 ,null=True)
