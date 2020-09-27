@@ -21,11 +21,11 @@
         <div class="row mb-3">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <div class="row ml-5">
+                    <div class="row ml-5">                        
                         {% if request.user.profil.profil_pic.url is not None %}
                         <img src="{{ request.user.profil.profil_pic.url }}" alt="" />
                         {% else %}
-                        <img src="{% static 'images/user.png' %}" alt="" />
+                        <img src="{% static 'user.png' %}" alt="" />
                         {% endif %}
                     </div>
                     <div class="row ml-5 mt-3">

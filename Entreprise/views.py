@@ -67,7 +67,7 @@ def scout(request,my_id):
         if expPoste <= p.nbr_annee and degree == p.type_diplome:
             profilRec.append(p)
         else:
-            profilOther.append(p) 
+            profilOther.append(p)
     context = {
         'profilRec':profilRec,
         'profilOther':profilOther,
